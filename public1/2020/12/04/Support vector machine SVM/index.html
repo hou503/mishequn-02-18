@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Algorithm,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="What is the principle of SVM?　　SVM is a two-class classification model. Its basic model is a linear classifier that finds the separated hyperplane with maximized interval in the feature space. (Interv">
+<meta name="keywords" content="Algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Support vector machine SVM">
+<meta property="og:url" content="http://56ssc.cc/2020/12/04/Support vector machine SVM/index.html">
+<meta property="og:site_name" content="How to learn AI">
+<meta property="og:description" content="What is the principle of SVM?　　SVM is a two-class classification model. Its basic model is a linear classifier that finds the separated hyperplane with maximized interval in the feature space. (Interv">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://56ssc.cc/2020/12/04/Support vector machine SVM/1.png">
+<meta property="og:image" content="http://56ssc.cc/2020/12/04/Support vector machine SVM/2.png">
+<meta property="og:updated_time" content="2021-03-08T00:47:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Support vector machine SVM">
+<meta name="twitter:description" content="What is the principle of SVM?　　SVM is a two-class classification model. Its basic model is a linear classifier that finds the separated hyperplane with maximized interval in the feature space. (Interv">
+<meta name="twitter:image" content="http://56ssc.cc/2020/12/04/Support vector machine SVM/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://56ssc.cc/2020/12/04/Support vector machine SVM/">
+
+
+
+
+
+  <title>Support vector machine SVM | How to learn AI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">How to learn AI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">How to learn AI</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+      
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2025124491792904" data-ad-slot="6724760688"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://56ssc.cc/2020/12/04/Support vector machine SVM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Debby">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="How to learn AI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Support vector machine SVM</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-12-04T19:21:51+08:00">
+                2020-12-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="What-is-the-principle-of-SVM"><a href="#What-is-the-principle-of-SVM" class="headerlink" title="What is the principle of SVM?"></a>What is the principle of SVM?</h3><p>　　SVM is a two-class classification model. Its basic model is a linear classifier that finds the separated hyperplane with maximized interval in the feature space. (Interval maximization is what distinguishes it from a perceptron)<br>It tries to find a hyperplane to segment the sample, separating the positive and negative examples in the sample with a hyperplane and maximizing the interval between the positive and negative examples as much as possible.</p>
+<p>　　The basic idea of support vector machine can be summarized as, firstly, transforming the input space to a higher dimensional space by a nonlinear transformation, and then finding the optimal classification plane in this new space, i.e., the maximum interval classification plane, and this nonlinear transformation is achieved by defining an appropriate inner product kernel function.SVM is actually proposed according to the statistical learning theory in accordance with the principle of minimizing structural risk, which requires to achieve two purposes the separation of the two types of problems </p>
+<p>(1) separation of the two types of problems (empirical risk minimization)</p>
+<p>(2) maximizing margin (minimizing the upper bound on risk) both by choosing the function with the lowest empirical risk in the subset of guaranteed risk minimization.</p>
+<p>Divided into 3 classes of support vector machines.<br>(1) When the training samples are linearly divisible, a linear classifier is learned by hard interval maximization, i.e., a linearly divisible support vector machine.</p>
+<p>(2) When the training data are approximately linearly divisible, a linear classifier, i.e., linear support vector machine, is learned by soft interval maximization by introducing relaxation variables.</p>
+<p>(3) When the training data is linearly indistinguishable, a nonlinear support vector machine is learned by using the kernel trick and soft interval maximization.</p>
+<p>Note: The mathematical derivation of each of the above SVMs should be familiar with: hard interval maximization (geometric interval) - learned pairwise problem - soft interval maximization (introduction of relaxation variables) - nonlinear support vector machine (kernel trick).</p>
+<h3 id="Main-features-of-SVM"><a href="#Main-features-of-SVM" class="headerlink" title="Main features of SVM"></a>Main features of SVM</h3><p>(1) Nonlinear mapping - theoretical basis </p>
+<p>(2) Maximization of classification boundary - method core </p>
+<p>(3) Support vector - computational results </p>
+<p>(4) Small sample learning method</p>
+<p>(5) The final decision function is determined by only a small number of support vectors, avoiding the “dimensional disaster”</p>
+<p>(6) A small number of support vectors determines the final result –&gt; a large number of redundant samples can be “eliminated” + the algorithm is simple + has robustness (reflected in 3 aspects)</p>
+<p>(7) Learning problem can be expressed as a convex optimization problem –&gt; global minimum</p>
+<p>(8) can automatically control the model by maximizing the boundary, but requires the user to specify the type of kernel function and the introduction of relaxation variables</p>
+<p>(9) Suitable for small samples, excellent generalization capability (because of minimal structural risk) (10) Low generalization error rate, fast classification, and easy to interpret results.</p>
+<p>Disadvantages:<br>(1) Large-scale training samples (m-order matrix computation) </p>
+<p>(2) Traditionally not suitable for multi-classification </p>
+<p>(3) Sensitive to missing data, parameters, kernel functions</p>
+<p>Why is SVM sensitive to missing data?</p>
+<p>Missing data here means that some feature data is missing and the vector data is incomplete. sVM does not have a strategy to deal with missing values (decision tree does). And SVM expects the samples to be linearly separable in the feature space, so the goodness of the feature space is important to the performance of SVM. Missing feature data will affect the goodness of the training results.</p>
+<h3 id="Why-does-SVM-use-interval-maximization"><a href="#Why-does-SVM-use-interval-maximization" class="headerlink" title="Why does SVM use interval maximization?"></a>Why does SVM use interval maximization?</h3><p>When the training data is linearly separable, there exist infinite separating hyperplanes to correctly separate the two types of data. The perceptual machine uses the misclassification minimization strategy to find the separation hyperplane, but there are infinite number of solutions at this time.</p>
+<p>Linearly separable support vector machines use interval maximization to find the optimal separation hyperplane, at which point the solution is unique. On the other hand, the separation hyperplane at this point produces the most robust classification result, with the best generalization to unknown instances.</p>
+<p>This should then be used to elaborate on the geometric interval, the functional interval, and the w and b when minimizing 1/2 ||w||^2 from the functional interval-&gt;solution. i.e., the origin of the linearly separable support vector machine learning algorithm-maximum interval method.</p>
+<p>What is maximized and what is minimized in svm?</p>
+<p>In various explanations of SVM, there is one knowledge point that is not well covered: the objective function of SVM is to maximize the geometric interval of the support vector, but how does it end up minimizing the normal vector (slope)?        </p>
+<p>Imagine a hyperplane where the slope and intercept increase by the same multiple, and the hyperplane is constant. In other words, the parameters of a fixed hyperplane are not fixed. When we find the optimal hyperplane, the solution space becomes infinite. We can of course reduce the solution space by setting some constraints on these parameters in advance. Then, this constraint is: make the function interval of the support vector = 1.       </p>
+<p>The advantage of this constraint is twofold: In the case that the hyperplane is not determined, of course no one knows which vectors the support vectors are, and there is only a formal expression for the geometric interval of the support vectors, not to mention how to express “maximize the geometric interval of the support vectors”. But with the above constraint, it does not matter who is the support vector in the expression of “geometric interval of support vector”, the only part related to the sample, that is, the function interval, has become 1. The function interval of other samples should be larger than the function interval of support vector, which is the only constraint to be satisfied. At this point, the solution space of the problem is no longer infinite, and there is a meaningful solution space.</p>
+<p>Support vector regression essentially has nothing to do with SVM, and the name is more confusing. However, it is included in libSVM, so I have to talk about it. In fact, it is solving a linear regression problem, but due to the increase of the minimum parametric requirement for the slope, the optimization problem formally resembles SVM, and the final expression of the linear function is also very similar to SVM, appearing in the form of a wonderful inner product with the support vector.</p>
+<h3 id="Why-should-we-convert-the-original-problem-of-solving-SVM-to-its-dual-problem"><a href="#Why-should-we-convert-the-original-problem-of-solving-SVM-to-its-dual-problem" class="headerlink" title="Why should we convert the original problem of solving SVM to its dual problem?"></a>Why should we convert the original problem of solving SVM to its dual problem?</h3><p>One, is that the dual problem is often easier to solve (when we look for the best advantage when the constraint exists, the existence of the constraint reduces the scope of the search required, but makes the problem more complex. (To make the problem manageable, our approach is to incorporate the objective function and constraints into a new function, the Lagrangian function, and then find the optimal point through this function.) </p>
+<p>Note: Lagrangian pairing does not change the optimal solution, but changes the complexity of the algorithm: original problem - sample dimension; pairing problem - number of samples. So linear classification -&gt; sample dimension &lt; sample number: original problem solved (liblinear default); nonlinear - up-dimensional -&gt; general leads to sample dimension &gt; sample number: pairwise problem solved.</p>
+<p>Second, naturally introduce kernel functions, which in turn extend to nonlinear classification problems.</p>
+<h3 id="Explain-the-support-vector"><a href="#Explain-the-support-vector" class="headerlink" title="Explain the support vector"></a>Explain the support vector</h3><p>Definition in the linearly divisible case + definition in the linearly indivisible case . (Statistical learning methods) </p>
+<p>(1) Several equivalent definitions of SV for linear separable SVM </p>
+<p>(2) Several equivalent definitions of SV for linear SVM </p>
+<p>(3) Compare the difference and connection between the definition of SV for linear separable SVM and the definition of SV for linear SVM</p>
+<p>Why do SVMs introduce kernel functions?</p>
+<p>When the sample is linearly indistinguishable in the original space, the sample can be mapped from the original space to a higher dimensional feature space, making the sample linearly distinguishable in this feature space.</p>
+<p>Pairwise problems after the introduction of mapping. </p>
+<p><img src="http://56ssc.cc/2020/12/04/Support vector machine SVM/1.png" alt="1.png"></p>
+<p>In learning prediction, only the kernel function K(x,y) is defined instead of explicitly defining the mapping function ϕ. Because the feature space dimension may be high, possibly even infinite, it is more difficult to compute ϕ(x)-ϕ(y) directly. In contrast, it is easier to compute K(x,y) directly (i.e., directly in the original low-dimensional space without explicitly writing out the result of the mapping).</p>
+<p>The kernel function is defined by K(x,y)=&lt;ϕ(x),ϕ(y)&gt;, i.e., the inner product in the feature space is equal to the result they compute in the original sample space by the kernel function K.</p>
+<p>Except for SVM, any method that represents the computation as an inner product of data points can be extended nonlinearly using the kernel method.</p>
+<h3 id="What-is-the-specific-formula-for-the-svm-RBF-kernel-function-Gaussian-kernel-function-also-called-Radial-Basis-Function-RBF-for-short-It-can-map-the-original-features-to-infinite-dimensions"><a href="#What-is-the-specific-formula-for-the-svm-RBF-kernel-function-Gaussian-kernel-function-also-called-Radial-Basis-Function-RBF-for-short-It-can-map-the-original-features-to-infinite-dimensions" class="headerlink" title="What is the specific formula for the svm RBF kernel function? (Gaussian kernel function, also called Radial Basis Function (RBF for short). It can map the original features to infinite dimensions)"></a>What is the specific formula for the svm RBF kernel function? (Gaussian kernel function, also called Radial Basis Function (RBF for short). It can map the original features to infinite dimensions)</h3><p><img src="http://56ssc.cc/2020/12/04/Support vector machine SVM/2.png" alt="2.png"></p>
+<p>Advantages of RBF kernels.<br>It is applicable to both large and small. Specifically (1) infinite-dimensional, linear kernel is its special case (2) compared to polynomial ~, RBF requires fewer parameters to be determined (3) under certain parameters, it has a similar function to sigmoid ~.</p>
+<p>The Gauss radial basis function, on the other hand, is a strongly localized kernel function whose extrapolation ability decreases with increasing parameter σ.</p>
+<p>This kernel will map the original space to an infinite dimensional space. However, if σ is chosen to be very large, the weights on the higher order features actually decay very fast, so that it is actually (to approximate numerically) equivalent to a low-dimensional subspace; conversely, if σ is chosen to be very small, it can map arbitrary data to be linearly divisible - which, of course, is not necessarily a good thing, because very serious overfitting problems may follow. However, in general, by tuning the parameter σ , the Gaussian kernel is actually quite flexible and one of the most widely used kernel functions.</p>
+<h3 id="How-does-SVM-handle-multi-classification-problems"><a href="#How-does-SVM-handle-multi-classification-problems" class="headerlink" title="How does SVM handle multi-classification problems?"></a>How does SVM handle multi-classification problems?</h3><p>There are two general approaches: one is the direct method, which directly modifies the objective function and combines the parameter solutions of multiple classification surfaces into one optimization problem. This seems to be simple, but the computational effort is very large.</p>
+<p>The other approach is the indirect approach: combining the trainers. The typical ones are one-to-one, and one-to-many.</p>
+<p>One-to-many is to train a classifier for each class. Since svm is binary, the two classes of this binary classifier are set as one class for the target class and another class for the remaining classes. In this way, k classifiers can be trained for k classes, and when a new sample comes in, the k classifiers are used to test which class the sample belongs to if the classifier has a high probability. This method is not very effective and the bias is relatively high.</p>
+<p>If there are k classes, a total of C(2,k) classifiers are trained, so that when a new sample comes, the C(2,k) classifiers are used to test, and whenever a class is determined to belong to a class, the class is added one, and the class with the most votes is determined to be the class of the sample. </p>
+<h3 id="Differences-and-connections-between-SVM-and-LR"><a href="#Differences-and-connections-between-SVM-and-LR" class="headerlink" title="Differences and connections between SVM and LR"></a>Differences and connections between SVM and LR</h3><p>Connection:</p>
+<p>(1) classification (binary classification) </p>
+<p>(2) can be added to the regularization term </p>
+<p>Differences:<br>(1) LR-parametric model; SVM-non-parametric model? </p>
+<p>(2) Objective function: LR-logistical loss; SVM-hinge loss </p>
+<p>(3) SVM-support vectors; LR-reduce the weights of the farther point </p>
+<p>(4) LR -model is simple, well understood, low accuracy, may be locally optimal; SVM-understanding, optimization complex, high accuracy, global optimal, transformed into a pairwise problem -&gt; simplify the model and computation </p>
+<p>(5) LR can do what SVM can do (linearly divisible), SVM can do what LR may not be able to do (linearly indistinguishable)</p>
+<p>The relationship between kernel function selection and FEATURE, sample.</p>
+<p>(1) fea large ≈ the number of samples: LR or linear kernel </p>
+<p>(2) fea small, the number of samples is not small nor small: Gaussian kernel </p>
+<p>(3) fea large, the number of samples: manually add features after turning</p>
+<p>Kernel function is actually a similarity measure of the input data, the input vectors form a similarity matrix K (Gram Matrix/Similarity/Kernel Matrix), K is symmetric semi-positive definite.</p>
+<p>The sufficient condition for K(x,z) to be a positive definite kernel is that the Gram matrix corresponding to K(x,z) is a real semi-positive definite matrix. </p>
+<p>Gram matrix: inner product of the points corresponding to the matrix. ktk, kkt </p>
+<p>Semi-positive definite matrix: let A be a real symmetric matrix. A is said to be semi-positive definite if for any real non-zero column matrix X there is XTAX ≥ 0. </p>
+<p>When testing whether a K is a positive definite kernel function, verify whether the real Gram matrix corresponding to K is a semi-positive definite matrix for any finite set of inputs {xi…}.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/11/29/Plain Bayesian/" rel="next" title="Plain Bayesian">
+                <i class="fa fa-chevron-left"></i> Plain Bayesian
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/12/09/Logistic regression LR/" rel="prev" title="Logistic regression LR">
+                Logistic regression LR <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Debby</p>
+              <p class="site-description motion-element" itemprop="description">How to learn AI</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-principle-of-SVM"><span class="nav-number">1.</span> <span class="nav-text">What is the principle of SVM?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Main-features-of-SVM"><span class="nav-number">2.</span> <span class="nav-text">Main features of SVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-does-SVM-use-interval-maximization"><span class="nav-number">3.</span> <span class="nav-text">Why does SVM use interval maximization?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-should-we-convert-the-original-problem-of-solving-SVM-to-its-dual-problem"><span class="nav-number">4.</span> <span class="nav-text">Why should we convert the original problem of solving SVM to its dual problem?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Explain-the-support-vector"><span class="nav-number">5.</span> <span class="nav-text">Explain the support vector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-specific-formula-for-the-svm-RBF-kernel-function-Gaussian-kernel-function-also-called-Radial-Basis-Function-RBF-for-short-It-can-map-the-original-features-to-infinite-dimensions"><span class="nav-number">6.</span> <span class="nav-text">What is the specific formula for the svm RBF kernel function? (Gaussian kernel function, also called Radial Basis Function (RBF for short). It can map the original features to infinite dimensions)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-does-SVM-handle-multi-classification-problems"><span class="nav-number">7.</span> <span class="nav-text">How does SVM handle multi-classification problems?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Differences-and-connections-between-SVM-and-LR"><span class="nav-number">8.</span> <span class="nav-text">Differences and connections between SVM and LR</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Debby</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Algorithm,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Idea.For a given item x to be classified, the posterior probability distribution is calculated by the learned model, i.e., the probability of occurrence of each target class under the condition that t">
+<meta name="keywords" content="Algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Plain Bayesian">
+<meta property="og:url" content="http://56ssc.cc/2020/11/29/Plain Bayesian/index.html">
+<meta property="og:site_name" content="How to learn AI">
+<meta property="og:description" content="Idea.For a given item x to be classified, the posterior probability distribution is calculated by the learned model, i.e., the probability of occurrence of each target class under the condition that t">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://56ssc.cc/2020/11/29/Plain Bayesian/1393464-20180504114329112-1062579832.png">
+<meta property="og:image" content="http://56ssc.cc/2020/11/29/Plain Bayesian/1393464-20180504114346515-581861539.png">
+<meta property="og:updated_time" content="2021-03-08T00:47:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Plain Bayesian">
+<meta name="twitter:description" content="Idea.For a given item x to be classified, the posterior probability distribution is calculated by the learned model, i.e., the probability of occurrence of each target class under the condition that t">
+<meta name="twitter:image" content="http://56ssc.cc/2020/11/29/Plain Bayesian/1393464-20180504114329112-1062579832.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://56ssc.cc/2020/11/29/Plain Bayesian/">
+
+
+
+
+
+  <title>Plain Bayesian | How to learn AI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">How to learn AI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">How to learn AI</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+      
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2025124491792904" data-ad-slot="6724760688"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://56ssc.cc/2020/11/29/Plain Bayesian/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Debby">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="How to learn AI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Plain Bayesian</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-29T14:01:28+08:00">
+                2020-11-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Idea"><a href="#Idea" class="headerlink" title="Idea."></a>Idea.</h3><p>For a given item x to be classified, the posterior probability distribution is calculated by the learned model, i.e., the probability of occurrence of each target class under the condition that this item occurs, and the class with the highest posterior probability is taken as the class to which x belongs. The posterior probability is calculated according to Bayes’ theorem.</p>
+<p>Key: To avoid the combinatorial explosion and sample sparsity problems faced in solving Bayes’ theorem, the assumption of conditional independence is introduced. The features used for classification are conditionally independent under the condition that the classes are determined.</p>
+<h3 id="What-is-plain-Bayesian-plain"><a href="#What-is-plain-Bayesian-plain" class="headerlink" title="What is plain Bayesian plain?"></a>What is plain Bayesian plain?</h3><p>Simply put: When solving the joint probability P(XY) using Bayes’ theorem, the conditional probability P(X|Y) needs to be computed. In calculating P(X|Y), the plain Bayesian makes a strong assumption of conditional independence (when Y is determined, the components of X take values independent of each other), i.e., P(X1=x1,X2=x2,… …Xj=xj|Y=yk) = P(X1=x1|Y=yk)<em>P(X2=x2|Y=yk)</em>… *P(Xj=xj|Y=yk).</p>
+<p>Main applications: email spam filtering, news classification</p>
+<p>Before training the plain Bayesian classifier, the training set is processed and the text is cleaned or there is much to learn.</p>
+<p>The text is vectorized according to the extracted classification features, and then the plain Bayesian classifier is trained.</p>
+<p>The difference in the number of de-high frequency words has an impact on the results.</p>
+<p>Laplace smoothing has a positive effect on improving the classification of the plain Bayes classifier.</p>
+<h3 id="What-is-the-difference-between-plain-Bayesian-and-LR"><a href="#What-is-the-difference-between-plain-Bayesian-and-LR" class="headerlink" title="What is the difference between plain Bayesian and LR?"></a>What is the difference between plain Bayesian and LR?</h3><p>In brief.</p>
+<p>(1) Parsimonious Bayes is a generative model, which learns the prior probability P(Y) and conditional probability P(X|Y) based on Bayesian estimation of existing samples, and then finds the joint distribution probability P(XY), and finally solves P(Y|X) using Bayes’ theorem, while LR is a discriminant model, which directly finds the conditional probability P(Y|X) based on the maximized log-likelihood function.</p>
+<p>(2) Parsimonious Bayes is based on a strong assumption of conditional independence (each feature variable takes values independently of each other under the condition that the classification Y is known), whereas LR does not require this.</p>
+<p>(3) Parsimonious Bayes is applicable to scenarios with small data sets, while LR is applicable to large-scale data sets.</p>
+<p>The former is a generative model and the latter is a discriminative model.</p>
+<p>1) First, Navie Bayes finds the prior probability P(Y), and the conditional probability P(X|Y) from known samples, and for a given instance, calculates the joint probability, and then finds the posterior probability. That is, it tries to find exactly how this data was generated (produced) and then classify it. Whichever category is most likely to generate this signal belongs to that category.</p>
+<p>Advantages: faster convergence when the sample size increases; applicable when hidden variables are present.</p>
+<p>Disadvantages: long time; requires more samples; wastes computational resources</p>
+<p>2) In contrast, logistic regression does not care about the proportion of categories in the sample and the probability of features appearing under the categories; it gives the equation of the prediction model directly. Let each feature have a weight, and the training sample data update the weight w to derive the final expression. Gradient method.</p>
+<p>Advantages: direct prediction tends to be more accurate; simplifies the problem; can reflect the distribution of the data, the differential characteristics of the categories; applicable to the identification of more categories.</p>
+<p>Disadvantages: slow convergence; not applicable to cases with hidden variables.</p>
+<h3 id="What-if-the-probability-is-0-when-estimating-the-conditional-probability-P-X-Y"><a href="#What-if-the-probability-is-0-when-estimating-the-conditional-probability-P-X-Y" class="headerlink" title="What if the probability is 0 when estimating the conditional probability P(X|Y)?"></a>What if the probability is 0 when estimating the conditional probability P(X|Y)?</h3><p>In short: introduce λ. When λ=1, it is called Laplace smoothing. </p>
+<h3 id="Advantages-and-disadvantages-of-plain-Bayesian"><a href="#Advantages-and-disadvantages-of-plain-Bayesian" class="headerlink" title="Advantages and disadvantages of plain Bayesian"></a>Advantages and disadvantages of plain Bayesian</h3><p>Advantages: good performance for small-scale data, suitable for multi-classification tasks, and suitable for incremental training.</p>
+<p>Disadvantages: sensitive to the expression form of the input data (discrete, continuous, extremely small values, etc.).</p>
+<h3 id="Why-is-the-assumption-of-attribute-independence-difficult-to-hold-in-practical-situations-but-plain-Bayes-still-achieves-better-results"><a href="#Why-is-the-assumption-of-attribute-independence-difficult-to-hold-in-practical-situations-but-plain-Bayes-still-achieves-better-results" class="headerlink" title="Why is the assumption of attribute independence difficult to hold in practical situations, but plain Bayes still achieves better results?"></a>Why is the assumption of attribute independence difficult to hold in practical situations, but plain Bayes still achieves better results?</h3><p>1) For classification tasks, as long as the conditional probabilities of each category are correctly ordered and no precise probability values are needed to lead to correct classification.</p>
+<p>2) If inter-attribute dependencies affect all categories equally, or if the effects of dependencies can cancel each other out, the assumption of conditional independence of attributes does not negatively affect performance while reducing computational overhead.</p>
+<h3 id="Why-a-posteriori-probability-maximization"><a href="#Why-a-posteriori-probability-maximization" class="headerlink" title="Why a posteriori probability maximization."></a>Why a posteriori probability maximization.</h3><p>Equivalently, expect risk minimization. Suppose a 0-1 loss function is chosen, i.e., 1 for correct classification and 0 for error, when the expected risk is minimized as</p>
+<p><img src="http://56ssc.cc/2020/11/29/Plain Bayesian/1393464-20180504114329112-1062579832.png" alt="1393464-20180504114329112-1062579832.png"></p>
+<h3 id="Algorithmic-problems"><a href="#Algorithmic-problems" class="headerlink" title="Algorithmic problems."></a>Algorithmic problems.</h3><p>In actual projects, the probability values are often very small decimals, and multiplying successive tiny decimals can easily cause the underflow to make the product 0.</p>
+<p>Solution: Take the natural logarithm of the product, and change the multiplication into a continuous addition.</p>
+<p>Also need to note: the length of the given feature vector may be different, which needs to be normalized to the through-length vector (here to text classification for example), for example, if it is a sentence word, the length is the length of the entire vocabulary, the corresponding position is the number of times the word appears.</p>
+<h3 id="Calculation-of-the-prior-conditional-probability"><a href="#Calculation-of-the-prior-conditional-probability" class="headerlink" title="Calculation of the prior conditional probability."></a>Calculation of the prior conditional probability.</h3><ul>
+<li>When discrete distribution: statistics of the frequency of occurrence of each category in the training sample. If the probability of a certain eigenvalue is 0 will make the whole probability product become 0 (called data sparsity), which destroys the assumption that each eigenvalue has the same status.</li>
+</ul>
+<p>Solution 1: Using Bayesian estimation (called Laplace smoothing when λ = 1).</p>
+<p><img src="http://56ssc.cc/2020/11/29/Plain Bayesian/1393464-20180504114346515-581861539.png" alt="1393464-20180504114346515-581861539.png"></p>
+<p>Solution 2: By clustering the non-occurring words to find out the system keywords, and find the average value according to the probability of related words.</p>
+<ul>
+<li>When continuous distribution: assume that its value obeys Gaussian distribution (normal distribution). That is, the sample mean and variance are calculated.</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/11/21/Introduction to Redis(3)/" rel="next" title="Introduction to Redis(3)">
+                <i class="fa fa-chevron-left"></i> Introduction to Redis(3)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/12/04/Support vector machine SVM/" rel="prev" title="Support vector machine SVM">
+                Support vector machine SVM <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Debby</p>
+              <p class="site-description motion-element" itemprop="description">How to learn AI</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Idea"><span class="nav-number">1.</span> <span class="nav-text">Idea.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-plain-Bayesian-plain"><span class="nav-number">2.</span> <span class="nav-text">What is plain Bayesian plain?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-difference-between-plain-Bayesian-and-LR"><span class="nav-number">3.</span> <span class="nav-text">What is the difference between plain Bayesian and LR?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-if-the-probability-is-0-when-estimating-the-conditional-probability-P-X-Y"><span class="nav-number">4.</span> <span class="nav-text">What if the probability is 0 when estimating the conditional probability P(X|Y)?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Advantages-and-disadvantages-of-plain-Bayesian"><span class="nav-number">5.</span> <span class="nav-text">Advantages and disadvantages of plain Bayesian</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-is-the-assumption-of-attribute-independence-difficult-to-hold-in-practical-situations-but-plain-Bayes-still-achieves-better-results"><span class="nav-number">6.</span> <span class="nav-text">Why is the assumption of attribute independence difficult to hold in practical situations, but plain Bayes still achieves better results?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-a-posteriori-probability-maximization"><span class="nav-number">7.</span> <span class="nav-text">Why a posteriori probability maximization.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Algorithmic-problems"><span class="nav-number">8.</span> <span class="nav-text">Algorithmic problems.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Calculation-of-the-prior-conditional-probability"><span class="nav-number">9.</span> <span class="nav-text">Calculation of the prior conditional probability.</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Debby</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

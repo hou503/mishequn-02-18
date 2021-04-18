@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="AI,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="In mathematical statistics, regression analysis is a method of determining quantitative relationships among multiple variables that are interdependent. Linear regression assumes that the output variab">
+<meta name="keywords" content="AI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linear regression">
+<meta property="og:url" content="http://56ssc.cc/2020/11/11/linear regression/index.html">
+<meta property="og:site_name" content="How to learn AI">
+<meta property="og:description" content="In mathematical statistics, regression analysis is a method of determining quantitative relationships among multiple variables that are interdependent. Linear regression assumes that the output variab">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://56ssc.cc/2020/11/11/linear regression/1.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/11/11/linear regression/2.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/11/11/linear regression/3.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/11/11/linear regression/4.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/11/11/linear regression/5.jpg">
+<meta property="og:updated_time" content="2021-03-08T00:47:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linear regression">
+<meta name="twitter:description" content="In mathematical statistics, regression analysis is a method of determining quantitative relationships among multiple variables that are interdependent. Linear regression assumes that the output variab">
+<meta name="twitter:image" content="http://56ssc.cc/2020/11/11/linear regression/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://56ssc.cc/2020/11/11/linear regression/">
+
+
+
+
+
+  <title>linear regression | How to learn AI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">How to learn AI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">How to learn AI</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+      
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2025124491792904" data-ad-slot="6724760688"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://56ssc.cc/2020/11/11/linear regression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Debby">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="How to learn AI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">linear regression</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-11T22:45:09+08:00">
+                2020-11-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index">
+                    <span itemprop="name">AI</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>In mathematical statistics, regression analysis is a method of determining quantitative relationships among multiple variables that are interdependent. Linear regression assumes that the output variable is a linear combination of several input variables and solves for the optimal coefficient in the linear combination based on this relationship. Among the many methods of regression analysis, the linear regression model is the easiest to fit and the statistical properties of its estimated results are easier to determine, thus it is widely used. In machine learning, the regression problem implies the premise that both the input and output variables can be taken continuously, and thus the linear regression model can be used to give estimates of the output for any input.</p>
+<p>In 1875, Francis Galton, a British statistician working on genetic problems, was looking for the relationship between parental and offspring height. After analyzing the height data of 1078 father-son pairs, he found that the scatter plot of these data was roughly linear, that is, the height of the father was positively correlated with the height of the son. Behind the positive correlation lies another phenomenon: sons of short fathers are more likely to be taller than their fathers, while sons of tall fathers are more likely to be shorter than their fathers.</p>
+<p>Influenced by his cousin Charles Darwin, Galton called this phenomenon the “regression effect,” which means that nature constrains the distribution of human height to a relatively stable and non-polarizing overall level, and gave the first expression for linear regression in history: y = 0.516x + 33.73, in which y and x represent the height in inches of the offspring and the parent, respectively.</p>
+<p>Galton’s ideas are still alive and well in today’s machine learning. Assuming that an instance can be represented by a column vector x=(x1;x2;⋯,xn), with each xi representing the instance’s value on the i-th attribute, linear regression works by acquiring a set of parameters wi,i=0,1,⋯,n so that the predicted output can be represented as a linear combination of the instance’s attributes with this set of parameters as weights. If the constant x0=1 is introduced, the model that linear regression attempts to learn is</p>
+<p><img src="http://56ssc.cc/2020/11/11/linear regression/1.jpg" alt></p>
+<p>When the instance has only one attribute, the relationship between input and output is a straight line on a two-dimensional plane; when the number of attributes of the instance is large, linear regression yields a hyperplane on an n-dimensional space, corresponding to a linear subspace of dimension equal to n - 1.</p>
+<p>When determining the coefficient wi on the training set, the error between the predicted output f(x) and the true output y is the central metric of interest. In linear regression, this error is defined in terms of the mean squared error. When the linear regression model is a straight line on a two-dimensional plane, the mean square error is the Euclidean distance between the predicted output and the true output, which is the L2 parametrization of the vector between two points. The solution method of the model with the goal of minimizing the mean square error is the least squares method, which can be written as follows</p>
+<p><img src="http://56ssc.cc/2020/11/11/linear regression/2.jpg" alt></p>
+<p>where each xk represents a sample in the training set. In the univariate linear regression task, the role of least squares is to find a straight line that minimizes the sum of the European distances from all samples to the line.</p>
+<p>At this point, the question arises: why should the parameter that minimizes the mean square error be the optimal model that matches the training samples?</p>
+<p>This problem can be elucidated from a probabilistic point of view. Linear regression yields a statistically significant fit, and in the univariate case, it is possible that every sample point does not fall on the resulting line.</p>
+<p>One explanation for this phenomenon is that the regression results can perfectly match the distribution of the ideal sample points, but the real sample points used in the training are the result of the superposition of the ideal sample points and the noise, thus creating a deviation from the regression model, and the value of the noise at each sample point is equal to yk - f(xk).</p>
+<p>It is assumed that the noise affecting the sample points satisfies a normal distribution with parameter (0,σ2) (remember the probability density formula for a normal distribution?) This means that the probability density is greatest for noise equal to zero, and the larger the magnitude (whether positive or negative), the smaller the probability of noise occurring. In this case, the derivation of the parameter w can be done in a maximum likelihood manner, i.e., finding the assumptions that make the sample data appear with maximum probability, given that the sample data and its distribution are known.</p>
+<p>The probability of a single sample xk is actually the probability that the noise is equal to yk - f(xk), while the probability of the simultaneous occurrence of all samples independent of each other is the product of the probabilities of each sample, which can be written as follows</p>
+<p><img src="http://56ssc.cc/2020/11/11/linear regression/3.jpg" alt></p>
+<p>The task of maximum likelihood estimation is to maximize the values of the above expressions. For computational simplicity, the product of the above expression can be transformed into a summation by taking the logarithm, and the logarithm operation does not affect its monotonicity. After some calculations, the maximization of the above formula is equivalent to the minimization of ∑k(yk-wTxk)2. Isn’t this the result of least squares?</p>
+<p>Thus, for univariate linear regression, where the error function obeys a normal distribution, least squares from a geometric sense is equivalent to maximum likelihood estimation from a probabilistic sense.</p>
+<p>Having determined the optimality of the least squares method, the next question is how to solve for the minimum value of the mean squared error. In univariate linear regression, the regression equation can be written as y=w1x+w0. According to the optimization theory, substitute this expression into the mean square error expression, and find the derivatives of w1 and w0 respectively, so that the value of both derivatives is equal to 0 is the optimal solution of the linear regression, and its analytical formula can be written as follows</p>
+<p><img src="http://56ssc.cc/2020/11/11/linear regression/4.jpg" alt></p>
+<p>Univariate linear regression is just the simplest of exceptions. The height of the offspring is not determined solely by the genetic inheritance of the parents; factors such as nutritional conditions and living environment can have an effect. When the description of the sample involves multiple attributes, this type of problem is called multiple linear regression.</p>
+<p>The parameters w in multiple linear regression can also be estimated using least squares, and their optimal solutions are also determined using partial derivatives, but the elements involved in the operation change from vectors to matrices. In the ideal case, the optimal parameters of multiple linear regression are</p>
+<p><img src="http://56ssc.cc/2020/11/11/linear regression/5.jpg" alt></p>
+<p>where X is a matrix of transpositions of all samples x=(x0;x1;x2;⋯,xn) together. However, this expression holds only in the presence of the inverse of the matrix (XTX). In a large number of complex practical tasks, the number of attributes in each sample may even exceed the total number of samples in the training set, where the optimal solution w∗ will not be unique and the choice of solution will depend on the inductive preferences of the learning algorithm.</p>
+<p>However, regardless of the selection criteria used, the fact that there are multiple optimal solutions cannot be changed, which implies the generation of overfitting. More importantly, in the case of overfitting, a small perturbation bringing a millisecond difference to the training data may cause the trained model to be false and the stability of the model cannot be guaranteed.</p>
+<p>A common approach to solving the overfitting problem is regularization, i.e., adding an additional penalty term. In linear regression, there are two types of regularization methods according to the penalties used, namely “Ridge Regression” and “LASSO Regression”.</p>
+<p>In machine learning, Ridge Regression, also known as Parameter Decay, was proposed by Andrei Tikhonov in the 1940’s. Of course, machine learning was not yet in existence at that time. The main purpose of this method was to solve the stability problem of matrix inverse, and its idea was later applied to regularization, which resulted in today’s Ridge Regression.</p>
+<p>Ridge regression implements regularization by adding a two-paradigm term to the original mean square error term to be solved, i.e., the minimized object becomes ||yk-wTxk||2+||Γw||2, where Γ is called a Tikhonov matrix and can be reduced to a constant.</p>
+<p>From an optimization point of view, the role of the two-paradigm penalty term is to preferentially select w with a smaller paradigm, which is equivalent to adding an extra layer of constraints on the properties of the optimal solution in addition to the minimum mean square error, restricting the optimal solution to a ball in a high-dimensional space. The Ridge regression is equivalent to scaling the original least-squares result, and although the contribution of each parameter in the optimal solution is weakened, the number of parameters does not become smaller.</p>
+<p>The full name of LASSO regression is “Least Absolute Shrinkage and Selection Operator” (LASSO), which was proposed by Robert Tibshlani in 1996. In contrast to the Ridge regression, the LASSO regression selects a paradigm term of the parameter to be solved as the penalty term, i.e., the minimization object becomes ||yk-wTxk||2+λ||w|||1, where λ is a constant.</p>
+<p>In contrast to the Ridge regression, the LASSO regression is characterized by the introduction of sparsity. It reduces the dimensionality of the optimal solution w, i.e., it weakens the contribution of some of the parameters to zero, which makes the number of elements in w much smaller than the number of original features.</p>
+<p>This can be seen more or less as an implementation of Occam’s razor principle: when both primary and secondary contradictions exist, the priority must be the primary contradiction. While factors such as diet, environment, and exercise all influence variation in height, the determining factor is clearly present only in the chromosomes. It is worth mentioning that the introduction of sparsity is a common method for simplifying complex problems and is widely used in other fields such as data compression and signal processing.</p>
+<p>From a probabilistic point of view, the analytical solution of least squares can be obtained using normal distribution as well as maximum likelihood estimation, as explained previously. Ridge regression and LASSO regression can also be interpreted from the probabilistic point of view: Ridge regression is estimated with the maximum a posteriori probability if wi satisfies the normal prior distribution; LASSO regression is estimated with the maximum a posteriori probability if wi satisfies the Laplace prior distribution.</p>
+<p>However, both the Ridge regression and LASSO regression suppress the overfitting phenomenon by introducing a penalty term, at the expense of increasing the training error and decreasing the test error. Combining the ideas of these two methods can lead to new optimization methods, which I won’t go into here.</p>
+<p>Today I have shared with you the basic principles of linear regression, one of the basic machine learning algorithms, the main points of which are as follows.</p>
+<p>Linear regression assumes that the output variable is a linear combination of several input variables and solves for the optimal coefficient in the linear combination based on this relationship.<br>The least squares method can be used to solve univariate linear regression problems and is equivalent to maximum likelihood estimation when the error function obeys a normal distribution.<br>Multiple linear regression problems can also be solved by least squares, but are highly susceptible to overfitting.<br>Ridge regression and LASSO regression suppress overfitting by introducing a two-paradigm penalty term and a one-paradigm penalty term, respectively.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AI/" rel="tag"># AI</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/11/07/Rendering process/" rel="next" title="Rendering process">
+                <i class="fa fa-chevron-left"></i> Rendering process
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/11/13/Introduction to Redis(2)/" rel="prev" title="Introduction to Redis(2)">
+                Introduction to Redis(2) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Debby</p>
+              <p class="site-description motion-element" itemprop="description">How to learn AI</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Debby</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
