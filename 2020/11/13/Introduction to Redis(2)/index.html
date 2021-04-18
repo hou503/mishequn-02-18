@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Redis,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Redis is one of the hottest in-memory databases, and by reading and writing data in memory, it greatly increases the read and write speed, so it can be said that Redis is an indispensable part of achi">
+<meta name="keywords" content="Redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introduction to Redis(2)">
+<meta property="og:url" content="http://56ssc.cc/2020/11/13/Introduction to Redis(2)/index.html">
+<meta property="og:site_name" content="How to learn AI">
+<meta property="og:description" content="Redis is one of the hottest in-memory databases, and by reading and writing data in memory, it greatly increases the read and write speed, so it can be said that Redis is an indispensable part of achi">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://56ssc.cc/2020/11/13/Introduction to Redis(2)/1.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/11/13/Introduction to Redis(2)/2.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/11/13/Introduction to Redis(2)/3.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/11/13/Introduction to Redis(2)/4.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/11/13/Introduction to Redis(2)/5.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/11/13/Introduction to Redis(2)/6.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/11/13/Introduction to Redis(2)/7.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/11/13/Introduction to Redis(2)/8.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/11/13/Introduction to Redis(2)/9.jpg">
+<meta property="og:updated_time" content="2020-11-13T13:21:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Introduction to Redis(2)">
+<meta name="twitter:description" content="Redis is one of the hottest in-memory databases, and by reading and writing data in memory, it greatly increases the read and write speed, so it can be said that Redis is an indispensable part of achi">
+<meta name="twitter:image" content="http://56ssc.cc/2020/11/13/Introduction to Redis(2)/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://56ssc.cc/2020/11/13/Introduction to Redis(2)/">
+
+
+
+
+
+  <title>Introduction to Redis(2) | How to learn AI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">How to learn AI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">How to learn AI</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+      
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2025124491792904" data-ad-slot="6724760688"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://56ssc.cc/2020/11/13/Introduction to Redis(2)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Debby">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="How to learn AI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Introduction to Redis(2)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-13T20:27:15+08:00">
+                2020-11-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Redis is one of the hottest in-memory databases, and by reading and writing data in memory, it greatly increases the read and write speed, so it can be said that Redis is an indispensable part of achieving high concurrency on a website.</p>
+<p>When we use Redis, we are exposed to Redis’ five object types (string, hash, list, collection, and ordered collection), and the richness of the types is one of Redis’ major advantages over Memcached and others. On top of understanding the usage and characteristics of the 5 object types of Redis, it is helpful to further understand the memory model of Redis, such as.</p>
+<ol>
+<li><p>Estimate the memory usage of Redis. To date, the cost of memory usage is still relatively high, so you can’t be reckless with the use of memory; according to the needs of a reasonable assessment of Redis memory usage, choose the appropriate machine configuration, you can save costs while meeting the demand.</p>
+</li>
+<li><p>Optimize memory usage. Understanding the Redis memory model can help you choose more appropriate data types and encodings to better utilize Redis memory.</p>
+</li>
+<li><p>Analyze and solve problems. When Redis has problems such as blocking and memory usage, you can find out the cause of the problem as soon as possible to analyze and solve the problem.</p>
+</li>
+</ol>
+<p>This article introduces the Redis memory model (3.0 as an example), including Redis memory usage and how to query it, how different object types are encoded in memory, memory allocators (jemalloc), simple dynamic strings (SDS), RedisObject, etc.; and then introduces several applications of the Redis memory model on this basis.</p>
+<h2 id="Redis-memory-statistics"><a href="#Redis-memory-statistics" class="headerlink" title="Redis memory statistics"></a>Redis memory statistics</h2><p>After the client connects to the server via redis-cli, you can view the memory usage through the info command.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">info memory</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://56ssc.cc/2020/11/13/Introduction to Redis(2)/1.jpg" alt></p>
+<p>The info command can display a lot of information about the redis server, including basic server information, CPU, memory, persistence, client connection information, and so on; memory is a parameter, which means only memory-related information is displayed.</p>
+<p>A few of the more important statements in the returned results are as follows.</p>
+<p>(1) used_memory: The total amount of memory (in bytes) allocated by the Redis allocator, including the virtual memory used (i.e. swap); the Redis allocator will be introduced later. used_memory_human just shows more friendly.</p>
+<p>(2) used_memory_rss: the amount of memory (in bytes) occupied by the Redis process is the same as that seen by the top and ps commands; in addition to the memory allocated by the allocator, used_memory_rss also includes the memory needed by the process itself, memory fragments, etc., but not virtual memory.</p>
+<p>Thus, used_memory and used_memory_rss, the former is the amount obtained from the Redis perspective, and the latter is the amount obtained from the operating system perspective. The difference between the two is due to memory fragmentation and the memory required by Redis processes to run, which makes the former smaller than the latter, and the existence of virtual memory, which makes the former larger than the latter.</p>
+<p>As the amount of data in Redis is relatively large in actual applications, the memory occupied by running processes is much smaller than the amount of Redis data and memory fragmentation; therefore, the ratio of used_memory_rss and used_memory becomes a parameter to measure the Redis memory fragmentation rate; this parameter is mem_fragmentation_ratio.</p>
+<p>(3) mem_fragmentation_ratio: memory fragmentation ratio, the ratio of used_memory_rss / used_memory.</p>
+<p>mem_fragmentation_ratio: the ratio of used_memory_rss / used_memory. mem_fragmentation_ratio is greater than 1, and the larger the value, the larger the memory fragmentation ratio. mem_fragmentation_ratio&lt;1 means that Redis uses virtual memory, because the medium of virtual memory is disk, which is much slower than the memory speed. It should be addressed promptly, such as adding Redis nodes, increasing Redis server memory, optimizing applications, etc.</p>
+<p>In general, mem_fragmentation_ratio around 1.03 is a healthy state (for jemalloc); the mem_fragmentation_ratio value in the above screenshot is large because no data has been deposited into Redis yet, and the memory in which the Redis process itself is running makes the used_fragmentation_ratio value large. memory_rss is much larger than used_memory.</p>
+<p>(4) mem_allocator: Redis uses a memory allocator, specified at compile time; it can be libc, jemalloc or tcmalloc, the default is jemalloc; the one used in the screenshot is the default jemalloc.</p>
+<h2 id="Redis-memory-partitioning"><a href="#Redis-memory-partitioning" class="headerlink" title="Redis memory partitioning"></a>Redis memory partitioning</h2><p>Redis, as an in-memory database, stores mainly data (key-value pairs) in memory; as you can see from the previous description, in addition to data, other parts of Redis also occupy memory.</p>
+<p>The memory consumption of Redis can be divided into the following main parts.</p>
+<ol>
+<li>Data<br>As a database, the data is the main part; the memory occupied by this part is counted in used_memory.</li>
+</ol>
+<p>Redis uses key-value pairs to store data, where the values (objects) consist of 5 types, namely strings, hashes, lists, collections, and ordered collections. These five types are provided externally by Redis, and in fact, there may be two or more internal coded implementations of each type within Redis; in addition, Redis does not throw data directly into memory when storing objects, but rather wraps objects in various ways: redisObject, SDS, etc. Later in this article, we will focus on data storage in Redis. The details.</p>
+<ol start="2">
+<li>The memory required to run the process itself<br>The main Redis process itself must use memory to run, such as code, constant pools, and so on; this memory is in the order of a few megabytes, which is negligible in most production environments compared to the memory used by Redis data. This memory is not allocated by jemalloc, so it is not counted in used_memory.</li>
+</ol>
+<p>Additional note: In addition to the main process, Redis also uses memory for running child processes, such as those created when Redis performs AOF and RDB rewrites. Of course, this memory does not belong to Redis processes and is not counted in used_memory or used_memory_rss.</p>
+<ol start="3">
+<li><p>Buffer memory<br>Buffered memory includes client buffers, copy backlog buffers, and AOF buffers; the client buffer stores the input and output buffers for client connections; the copy backlog buffer is used for partial replication functions; and the AOF buffer is used to save the most recent write commands when performing an AOF rewrite. It is not necessary to know the details of these buffers before knowing the corresponding functions; this part of memory is allocated by jemalloc, so it is counted in used_memory.</p>
+</li>
+<li><p>Memory fragmentation<br>Memory fragmentation is created by redis during the process of allocating and reclaiming physical memory. For example, if changes to data are frequent and the size of the data varies greatly from one another, it may result in memory fragmentation when the space freed by redis is not freed in physical memory, but redis is unable to use it efficiently. Memory fragmentation is not counted in used_memory.</p>
+</li>
+</ol>
+<p>The generation of memory fragmentation is related to the operations performed on the data, the characteristics of the data, etc. In addition, it is also related to the memory allocator used: if the memory allocator is properly designed, the generation of memory fragmentation can be reduced as much as possible. The jemalloc we’ll talk about later is a good way to control memory fragmentation.</p>
+<p>If the memory fragmentation in the Redis server is already large, it can be reduced by a safe reboot: after the reboot, Redis re-reads the data from the backup file, reorganizes it in memory, and selects the appropriate memory cell for each data to reduce memory fragmentation.</p>
+<h2 id="Redis-data-store-details"><a href="#Redis-data-store-details" class="headerlink" title="Redis data store details"></a>Redis data store details</h2><ol>
+<li>Overview<br>The details of the Redis data store involve memory allocators (such as jemalloc), simple dynamic strings (SDS), the five object types and their internal coding, and redisObject.</li>
+</ol>
+<p>The following diagram shows the data model involved in executing set hello world.</p>
+<p><img src="http://56ssc.cc/2020/11/13/Introduction to Redis(2)/2.jpg" alt></p>
+<p>(1) dictEntry: Redis is a Key-Value database, so for each key-value pair will have a dictEntry, which stores pointers to Key and Value; next points to the next dictEntry, which has nothing to do with the Key-Value.</p>
+<p>(2) Key: Key (“hello”) is not directly stored as a string, but is stored in the SDS structure, visible in the upper right corner of the figure.</p>
+<p>(3) redisObject: Value(“world”) is neither stored directly as a string nor in SDS like Key, but in a redisObject. In fact, Value is stored in redisObject regardless of which of the five types it is; the type field in redisObject specifies the type of the Value object, and the ptr field points to the address of the object. However, it can be seen that string objects, although wrapped in redisObject, still need to be stored via SDS.</p>
+<p>In fact, in addition to the type and ptr fields, there are other fields in redisObject that are not given in the diagram, such as those used to specify the internal encoding of the object; these are described in detail later.</p>
+<p>(4) jemalloc: Whether it is a DictEntry object, a redisObject, or an SDS object, a memory allocator (such as a jemalloc) is required to allocate memory for storage. The DictEntry object, for example, is composed of three pointers, accounting for 24 bytes in a 64-bit machine. jemalloc will allocate 32 bytes of memory for it.</p>
+<p>The following is an introduction to jemalloc, redisObject, SDS, object types and internal coding, respectively.</p>
+<ol start="2">
+<li>jemalloc<br>Redis will specify a memory allocator at compile time; the memory allocator can be libc, jemalloc or tcmalloc, and the default is jemalloc.</li>
+</ol>
+<p>The default is jemalloc. jemalloc is the default memory allocator for Redis, and it does a relatively good job of reducing memory fragmentation. jemalloc divides the memory space in a 64-bit system into three ranges: small, large and huge.</p>
+<p>The memory units divided by jemalloc are shown in the following figure.</p>
+<p><img src="http://56ssc.cc/2020/11/13/Introduction to Redis(2)/3.jpg" alt></p>
+<ol start="3">
+<li>redisObject<br>As mentioned earlier, there are five types of Redis objects; regardless of the type, Redis does not store them directly, but through the redisObject object.</li>
+</ol>
+<p>The redisObject object is very important. Redis object types, internal coding, memory recycling, shared objects, etc., all require redisObject support.</p>
+<p>The definition of a redisObject is as follows (may vary slightly from version to version of Redis).</p>
+<p><img src="http://56ssc.cc/2020/11/13/Introduction to Redis(2)/4.jpg" alt></p>
+<p>(1) type<br>The type field represents the type of the object and is four bits long; it currently includes REDIS_STRING (string), REDIS_LIST (list), REDIS_HASH (hash), REDIS_SET (set), and REDIS_ZSET (ordered set).</p>
+<p>When we execute the type command, we are reading the type field of RedisObject to get the type of the object; the following image shows.<br><img src="http://56ssc.cc/2020/11/13/Introduction to Redis(2)/5.jpg" alt><br>(2) encoding<br>encoding represents the internal encoding of an object and takes up 4 bits.</p>
+<p>For each type supported by Redis, there are at least two encodings. For example, for strings, there are int, embstr, and raw encodings. Through the encoding property, Redis can set different encodings for objects according to different usage scenarios, which greatly improves the flexibility and efficiency of Redis. Redis uses compressed lists to store the elements in a list, which takes up less memory and can be loaded faster than double-ended lists.</p>
+<p>The object encoding command allows you to see how the object is encoded, as shown below.</p>
+<p><img src="http://56ssc.cc/2020/11/13/Introduction to Redis(2)/6.jpg" alt></p>
+<p>(3) lru<br>The lru records the last time an object was accessed by the command program, and the number of bits it occupies varies by version (e.g., 24 bits for version 4.0 and 22 bits for version 2.6).</p>
+<p>The object idle time can be calculated by comparing the lru time with the current time; the object idletime command displays the idle time in seconds.</p>
+<p><img src="http://56ssc.cc/2020/11/13/Introduction to Redis(2)/7.jpg" alt></p>
+<p>The lru value is not only printed by the object idletime command, but also has to do with Redis memory recuperation: if Redis has the maxmemory option turned on and the memory recuperation algorithm chooses volatile-lru or allkeys-lru, then when Redis memory exceeds the value specified by maxmemory, Redis will prioritize the object with the longest idle time to be freed.</p>
+<p>(4) refcount<br>refcount and shared objects</p>
+<p>refcount records the number of times the object has been referenced, type is integer. refcount’s role, mainly in the object’s reference count and memory recovery. When a new object is created, refcount is initialized to 1; when a new program uses the object, refcount is added to 1; when the object is no longer used by a new program, refcount is subtracted from 1; when refcount becomes 0, the memory occupied by the object will be freed.</p>
+<p>The object that has been used many times in Redis (refcount&gt;1) is called a shared object.Redis saves memory by not creating a new object when some objects are repeated, but still uses the original object. This reused object is called a shared object. Currently, shared objects only support string objects with integer values.</p>
+<p>The concrete implementation of shared objects</p>
+<p>Redis’ shared objects currently only support string objects with integer values. This is actually a balance between memory and CPU (time): while shared objects reduce memory consumption, it takes extra time to determine if two objects are equal. The complexity of the operation is O(1) for integer values; O(n) for ordinary strings; and O(n^2) for hashes, lists, collections, and ordered collections.</p>
+<p>While shared objects can only be string objects with integer values, shared objects may be used for all five types (e.g., elements of hashes, lists, etc. can be used).</p>
+<p>In the current implementation, the Redis server creates 10,000 string objects with integer values from 0 to 9999 at initialization; when Redis needs to use string objects with values from 0 to 9999, it can use these shared objects directly. 10,000 can be adjusted with the parameter REDIS_SHARED_INTEGERS (in 4.0 it was OBJ_SHARED_INTEGERS) value to change.</p>
+<p>The number of references to a shared object can be viewed with the object refcount command, as shown in the following figure. The result page of the command confirms that only integers between 0 and 9999 are shared.</p>
+<p><img src="http://56ssc.cc/2020/11/13/Introduction to Redis(2)/8.jpg" alt></p>
+<p>(5) ptr<br>The ptr pointer points to the specific data, as in the previous example, set hello world, and ptr points to the SDS containing the string world.</p>
+<p>(6) Summary<br>In summary, the structure of a redisObject is related to object type, encoding, memory recycling, and shared objects; a redisObject object has a size of 16 bytes.</p>
+<p>4bit+4bit+24bit+4Byte+8Byte=16Byte.</p>
+<ol start="4">
+<li>SDS<br>Instead of using C strings (i.e., arrays of characters ending with the null character ‘\0’) as the default string representation, Redis uses SDS, which is an acronym for Simple Dynamic String.</li>
+</ol>
+<p>(1) SDS structure</p>
+<p><img src="http://56ssc.cc/2020/11/13/Introduction to Redis(2)/9.jpg" alt></p>
+<p>(2) Comparison of SDS and C strings<br>The addition of the free and len fields to the C string by SDS brings a number of benefits.</p>
+<p>Get string length: SDS is O(1), C string is O(n)<br>Buffer overflow: When using the API for C string, if the string length increases (e.g., strcat operation) and memory is forgotten to be reallocated, it is easy to cause a buffer overflow; while SDS records the length, the corresponding API will automatically reallocate memory when it may cause a buffer overflow, thus eliminating buffer overflow.<br>Memory reallocation when modifying a string: For C string, if you want to modify the string, you must reallocate memory (release first and then apply), because if you don’t reallocate, the memory buffer overflow will be caused when the string length increases, and the memory leak will be caused when the string length decreases. As for SDS, since len and free can be recorded, the correlation between string length and space array length is relieved, and can be optimized on this basis: the space pre-allocation policy (i.e., allocating more memory than actually needed) reduces the probability of reallocating memory when string length increases; the inert space release policy reduces the probability of reallocating memory when string length decreases. Significantly reduced.<br>Accessing binary data: SDS is OK, C string is not. Because the C string identifies the end of a string as a null character, and for some binary files (such as images), the contents may include an empty string, so the C string cannot be accessed correctly; SDS identifies the end of a string as a string length len, so there is no such problem.<br>In addition, since the buf in SDS still uses the C string (i.e. ends with ‘\0’), SDS can use some of the functions in the C string library; however, it should be noted that it can only be used when SDS is used to store text data, but not when storing binary data (‘\0’ is not necessarily the end of the string).</p>
+<p>(3) Application of SDS to C-strings<br>Redis always uses SDS instead of C string when storing objects. For example, with the set hello world command, hello and world are both stored as SDS. The sadd myset member1 member2 member3 command stores both the key (“myset”) and the elements in the set (“member1”, “member1”). “member2” and “member3”), both of which are stored in the form of SDS. In addition to storing objects, SDS is also used to store various buffers.</p>
+<p>The C string is only used if the string does not change, such as when printing a log.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Redis/" rel="tag"># Redis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/11/11/linear regression/" rel="next" title="linear regression">
+                <i class="fa fa-chevron-left"></i> linear regression
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/11/21/Backward feed-back neural network algorithm/" rel="prev" title="Backward feed-back neural network algorithm (BP algorithm)">
+                Backward feed-back neural network algorithm (BP algorithm) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Debby</p>
+              <p class="site-description motion-element" itemprop="description">How to learn AI</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-memory-statistics"><span class="nav-number">1.</span> <span class="nav-text">Redis memory statistics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-memory-partitioning"><span class="nav-number">2.</span> <span class="nav-text">Redis memory partitioning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-data-store-details"><span class="nav-number">3.</span> <span class="nav-text">Redis data store details</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Debby</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

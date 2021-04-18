@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Mathematics,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="The Dartmouth Conference in 1956 heralded the birth of artificial intelligence. In its infancy, the founding fathers, including future Turing Award winners such as John McCarthy, Herbert Simon, and Ma">
+<meta name="keywords" content="Mathematics">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Formal logic">
+<meta property="og:url" content="http://56ssc.cc/2020/10/31/Formal logic/index.html">
+<meta property="og:site_name" content="How to learn AI">
+<meta property="og:description" content="The Dartmouth Conference in 1956 heralded the birth of artificial intelligence. In its infancy, the founding fathers, including future Turing Award winners such as John McCarthy, Herbert Simon, and Ma">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://56ssc.cc/2020/10/31/Formal logic/1.jpg">
+<meta property="og:updated_time" content="2021-03-08T00:47:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Formal logic">
+<meta name="twitter:description" content="The Dartmouth Conference in 1956 heralded the birth of artificial intelligence. In its infancy, the founding fathers, including future Turing Award winners such as John McCarthy, Herbert Simon, and Ma">
+<meta name="twitter:image" content="http://56ssc.cc/2020/10/31/Formal logic/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://56ssc.cc/2020/10/31/Formal logic/">
+
+
+
+
+
+  <title>Formal logic | How to learn AI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">How to learn AI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">How to learn AI</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+      
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2025124491792904" data-ad-slot="6724760688"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://56ssc.cc/2020/10/31/Formal logic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Debby">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="How to learn AI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Formal logic</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-10-31T17:56:01+08:00">
+                2020-10-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mathematics/" itemprop="url" rel="index">
+                    <span itemprop="name">Mathematics</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>The Dartmouth Conference in 1956 heralded the birth of artificial intelligence. In its infancy, the founding fathers, including future Turing Award winners such as John McCarthy, Herbert Simon, and Marvin Minsky, had a vision of how “a program capable of abstract thought could explain how synthetic matter could possess the mind of a human being”.</p>
+<p>In layman’s terms, the ideal AI would be capable of learning, reasoning, and induction in the abstract, and would be far more versatile than the algorithms used to solve concrete problems like chess or Go.</p>
+<p>An indispensable foundation for such an AI is formal logic. Early researchers of artificial intelligence believed that the basic unit of human cognition and thinking is symbols, and the cognitive process is the logical operation of symbols, so that human abstract logical thinking can be simulated by the operation of logic gates in the computer, and then realize the mechanization of human cognition.</p>
+<p>In turn, formal logic is how intelligent behavior is described, and any system that can translate some physical patterns or symbols into other patterns or symbols has the potential to produce intelligent behavior, which is artificial intelligence.</p>
+<p>Artificial intelligence is able to simulate intelligent behavior on the basis of having knowledge, but knowledge itself is also an abstract concept that needs to be represented in a way that a computer can understand.</p>
+<p>In AI, common ways of representing knowledge include data structures and processing algorithms. Data structures are used to statically store the problem to be solved, the intermediate solution to the problem, the final solution to the problem, and the knowledge involved in the solution; processing algorithms are used to dynamically interact between existing problems and knowledge, and together they form a complete knowledge representation system.</p>
+<p>In the study of artificial intelligence, it is a common method to realize knowledge representation by formal logic. Formal logic can be said to be all-encompassing, the simplest example of which is the three-stage theory proposed by the ancient Greek philosopher Aristotle and passed down to the present day, which consists of two premises and a conclusion.</p>
+<ul>
+<li>Science is constantly evolving.</li>
+<li>Artificial intelligence as science.</li>
+<li>So, artificial intelligence is constantly evolving.</li>
+</ul>
+<p>Aristotle’s contribution was not only to demonstrate the continuous development of artificial intelligence, but also to identify the formal process of deducing a conclusion on the basis of major and minor premises, a process that was completely free of content limitations. The resulting birth of symbolic reasoning has had a profound impact on the study of mathematical logic.</p>
+<p>The main application in artificial intelligence is first-order predicate logic. Predicate logic is the most fundamental logical system and a fundamental part of formal logic. A special case of predicate logic is propositional logic. In predicate logic, a proposition is the basic unit of logical processing and can only be judged as true or false.</p>
+<p>However, the limitation of propositional logic is that it cannot reflect the structure and logical features of the objects it describes, nor can it reflect the common features of different things. If the proposition “Old Li is Xiao Li’s father” is given alone, the relationship between Old Li and Xiao Li cannot be determined without context, and the truth of the proposition is meaningless.</p>
+<p>In order to extend the representational power of formal logic, predicate logic was born on the basis of propositional logic. Predicate logic splits propositions into individual words, predicates, and quantifiers with the following meanings.</p>
+<ul>
+<li>Individual words are concrete or abstract objects of description that can exist independently.</li>
+<li>Predicates are used to describe the properties and interrelationships of individual words.</li>
+<li>Quantifiers are used to describe the quantitative relationships of individual words, including the holomorphic quantifiers ∀ and the presence quantifiers.</li>
+</ul>
+<p>All three elements can be used together to form a proposition. Different propositions can be linked by logical connectives to form compound propositions from simple propositions. There are five types of logical conjunctions, in descending order of priority.</p>
+<ul>
+<li>Negative (¬): compound proposition ¬P denies the truth value of proposition P, i.e. “not P”.</li>
+<li>Hopefully (∧): Composite P∧Q denotes the sum of proposition P and Q, i.e. “P and Q”.</li>
+<li>(∨): Complex P∨Q denotes the disjunction of proposition P or Q, i.e. “P or Q”.</li>
+<li>Implicit (→): The compound proposition P→Q means that proposition P is a condition of proposition Q, i.e. “if P, then Q”.</li>
+<li>Equivalence (↔): The compound proposition P↔Q means that proposition P and proposition Q are mutually implicit, i.e. “if P, then Q and if Q, then P”.</li>
+</ul>
+<p>Not only constant symbols appear in predicate logic, but also variable symbols are legal, and function symbols can also appear. The introduction of variables and functions expands the scope of predicate logic representation and enhances its universality. Predicate logic can be used to represent both factual knowledge such as concepts, states, and properties of things, as well as rule-based knowledge with definite causal relations between things.</p>
+<p>Factual knowledge is usually represented by predicate formulas connected by parsimony and concatenation symbols, while rule-based knowledge is usually represented by predicate formulas connected by implication symbols. In a general sense, knowledge is expressed using predicate logic in the following steps.</p>
+<ul>
+<li>Define the predicate and the individual and determine the exact meaning of each predicate and each individual.</li>
+<li>Assign specific values to the variables in each predicate, depending on the thing or concept to be expressed.</li>
+<li>Connect the individual predicates with appropriate logical conjunctions based on the semantics of the knowledge to be expressed.</li>
+</ul>
+<p>After the processing of the above steps, the abstract sense of knowledge can be transformed into a computer can recognize and process the data structure.</p>
+<p>For example, if you want to use predicate logic to represent the knowledge that “all natural numbers are integers greater than zero”, you first have to define all relations as corresponding predicates. The predicate N(x) means x is a natural number, P(x) means x is greater than zero, and I(x) means x is an integer, and then these predicates are connected semantically to obtain the predicate formula.<br><img src="http://56ssc.cc/2020/10/31/Formal logic/1.jpg" alt></p>
+<p>The use of formal logic for knowledge representation is only a means to enable AI to automate reasoning, induction and deduction on the basis of knowledge in order to obtain new conclusions and new knowledge. At the present stage, the main difference between human intelligence and artificial intelligence is reflected in the reasoning ability.</p>
+<p>Instead of plunging headlong into the vast amount of data to learn, human judgment is based on induction and deduction based on the characteristics of a small amount of data, with the general rules derived as the basis for judgment. A little interference in the digital image can make the neural network mistake a sea turtle for a rifle, but this trick cannot deceive human beings with thinking ability, and this is the reason why.</p>
+<p>The basis for automatic reasoning by artificial intelligence is the generative system. Generative systems use generative rules to describe symbolic strings instead of operations to represent the process of reasoning and behavior as generative rules.</p>
+<p>The generative rule is usually used to represent the causal relationship between things, and its basic form is P → Q. It can be used to represent the conclusion Q under the premise P, or the action Q under the condition P. Here P is called the rule antecedent, which can be a simple condition, or a complex condition formed by multiple simple conditions through a conjunction, while Q is called the rule postecedent.</p>
+<p>When a set of generative rules cooperate and act in concert with each other, the conclusions generated by one generative rule can be used as known premises or conditions for another generative rule to further solve more complex problems, and such a system is a generative system.</p>
+<p>Generative systems, in general, consist of three basic parts: the rule base, the fact base, and the reasoning machine.</p>
+<p>The rule base is the core and foundation of the expert system, storing a collection of rules in the generative form, in which the completeness, accuracy and reasonableness of the rules will have a direct impact on the system performance.</p>
+<p>The fact base stores input facts, intermediate results and final results. When the premise of a generating formula in the rule base can be matched with some known facts in the fact base, the generating formula is activated and its conclusion can be stored as a known fact in the fact base.</p>
+<p>A reasoning machine, on the other hand, is a program used to control and coordinate the operation of the rule base with the fact base, and includes both a reasoning approach and a control strategy.</p>
+<p>Specifically, there are three types of reasoning: forward reasoning, backward reasoning, and bidirectional reasoning.</p>
+<p>Forward reasoning adopts a bottom-up approach, which starts from known facts and then derives the target conclusion by continuously selecting matching rule front pieces in the rule base to obtain matching rule back pieces.</p>
+<p>Reverse reasoning uses a top-down approach, i.e., starting from the target hypothesis, one selects the matching rule antecedents by constantly matching the known facts with the rule antecedents in the rule base, and then backtracks to the known facts.</p>
+<p>Two-way reasoning, on the other hand, is a more efficient way of combining forward and backward reasoning so that the reasoning proceeds in both top-down and bottom-up directions until it converges at some intermediate point.</p>
+<p>Although automatic reasoning shows great ability in proving mathematical theorems, it is far from being intelligent in solving problems in daily life because of the lack of common sense. For humans, common sense is established through the process of socialization and growth.</p>
+<p>However, computers are unable to reach understanding as humans grow up, so common sense, the prerequisite for intelligence, can only be instilled in a formalized manner on hard drives and in memory. This requires that the knowledge and beliefs of the average adult be explicitly expressed, flexibly organized and applied.</p>
+<p>Without a clear expression of common sense and beliefs, AI is bound to get stuck in the mire of confusion, and obtaining generalized and adaptable intelligent behavior can only be a pipe dream.</p>
+<p>The ultimate unavoidable and essential problem in talking about formal logic in AI lies in Gödel’s incompleteness theorem.</p>
+<p>In 1900, the German mathematician David Hilbert asked the 23 most important mathematical questions of the 20th century at the International Congress of Mathematicians in Paris, the second of which was the non-contradiction of arithmetic axiomatic systems.</p>
+<p>In 1931, the Austrian mathematician Kurt Gödel gave a negative answer to this question, the First Incompleteness Theorem.</p>
+<p>In any formal system containing elementary number theory.<br>All must have an undecidable proposition.<br>By this theorem, Gödel proves that the Achilles’ heel of the axiomatized system is its inability to refer to itself, and that the following statement is a typical self-referential statement.</p>
+<p>This mathematical proposition is not provable.<br>In the first place, this mathematical proposition discusses no other object than itself. The “present mathematical proposition” is a reference to the whole proposition. Secondly, the proposition gives a logical judgment that it cannot be proved.</p>
+<p>Gödel proves that this proposition can neither be proven nor falsified, ruthlessly puncturing the dream that mathematical axiomatized systems have both consistency and completeness.</p>
+<p>The impact of the incompleteness theorem on artificial intelligence lies in the understanding of the theoretical foundation that “the essence of cognition is computation”. From the perspective of “cognition is computation”, if a computer-based AI wants to achieve a thinking ability similar to that of human beings, it must also establish the concept of “self”, which will undoubtedly lead to the emergence of self-referencing and become a living target of the incompleteness theorem.</p>
+<p>If a computer can create a symbol to represent itself in its calculations, then Gödel’s method of creating paradoxes can create illusions in the computer that are neither falsifiable nor verifiable.</p>
+<p>In the shadow of Gödel’s incompleteness theorem, the “cognitive computationalist” research agenda based on Turing’s notion of computability has shown its great limitations. Today, the connectionist school, which relies on artificial neural networks, is flourishing, while the symbolist school, which relies on formal logic, is in decline.</p>
+<p>But putting aside the differences in academic paths, what is the essential difference between human intelligence and artificial intelligence, and perhaps this is the greatest mystery left to us by the incompleteness theorem.</p>
+<p>Today I share with you the essential foundations of formal logic necessary for artificial intelligence and the fundamentals of automatic reasoning using formal logic, the main points of which are as follows.</p>
+<ul>
+<li>If cognitive processes are defined as the logical manipulation of symbols, the basis of AI is formal logic.<br>(a) Predicate logic is the primary method of knowledge representation.</li>
+<li>Predicate logic-based systems allow for artificial intelligence with automatic reasoning capabilities.</li>
+<li>The incompleteness theorem challenges the fundamental notion of artificial intelligence that “cognition is essentially computational”.</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mathematics/" rel="tag"># Mathematics</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/10/25/HTTP/" rel="next" title="HTTP">
+                <i class="fa fa-chevron-left"></i> HTTP
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/10/31/From Input URL to Page Presentation/" rel="prev" title="From Input URL to Page Presentation">
+                From Input URL to Page Presentation <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Debby</p>
+              <p class="site-description motion-element" itemprop="description">How to learn AI</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Debby</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

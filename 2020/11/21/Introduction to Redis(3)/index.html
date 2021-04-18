@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Redis,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Redis object types and internal codingRedis supports five object types, and each structure has at least two encodings; this has the advantage of separating the interface from the implementation, so th">
+<meta name="keywords" content="Redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introduction to Redis(3)">
+<meta property="og:url" content="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/index.html">
+<meta property="og:site_name" content="How to learn AI">
+<meta property="og:description" content="Redis object types and internal codingRedis supports five object types, and each structure has at least two encodings; this has the advantage of separating the interface from the implementation, so th">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/1.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/2.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/3.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/4.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/5.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/6.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/7.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/8.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/9.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/10.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/11.jpg">
+<meta property="og:updated_time" content="2020-11-13T13:40:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Introduction to Redis(3)">
+<meta name="twitter:description" content="Redis object types and internal codingRedis supports five object types, and each structure has at least two encodings; this has the advantage of separating the interface from the implementation, so th">
+<meta name="twitter:image" content="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/">
+
+
+
+
+
+  <title>Introduction to Redis(3) | How to learn AI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">How to learn AI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">How to learn AI</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+      
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2025124491792904" data-ad-slot="6724760688"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Debby">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="How to learn AI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Introduction to Redis(3)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-21T21:24:11+08:00">
+                2020-11-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Redis-object-types-and-internal-coding"><a href="#Redis-object-types-and-internal-coding" class="headerlink" title="Redis object types and internal coding"></a>Redis object types and internal coding</h2><p>Redis supports five object types, and each structure has at least two encodings; this has the advantage of separating the interface from the implementation, so that when the internal encoding needs to be added or changed, the user is not affected, and on the other hand, the internal encoding can be switched according to different scenarios to improve efficiency.</p>
+<p>With respect to the conversion of Redis internal encodings, the following rule applies: the encoding conversion is done when Redis writes data, and the conversion process is not reversible, only small-memory encodings can be converted to large-memory encodings.</p>
+<ol>
+<li>String<br>(1) Overview<br>Strings are the most basic type, since all keys are strings and several other elements of complex types other than strings are also strings.</li>
+</ol>
+<p>The length of a string cannot exceed 512 MB.</p>
+<p>(2) Internal encoding<br>There are three types of internal coding for string types and they are used in the following scenarios.</p>
+<p>int: 8 bytes long integer. When the string value is integer, the value is represented by a long integer.<br>embstr: &lt;= 39 bytes string. embstr and raw both use redisObject and sds to store data, the difference is that embstr uses only one memory allocation (so redisObject and sds are continuous), while raw needs two memory allocations (redisObject and (sds allocates space). So the advantages of embstr over raw are less space allocated once when creating, less space released when deleting, and the ease of finding all of the object’s data linked together. The downside of embstr is also obvious: if the length of a string increases and memory needs to be reallocated, the entire redisObject and sds will need to be reallocated, so embstr is implemented as read-only in redis.<br>raw: strings larger than 39 bytes<br>An example is shown in the figure below.</p>
+<p><img src="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/1.jpg" alt><br>The length of embstr and raw to distinguish is 39; because the length of redisObject is 16 bytes, and the length of sds is 9 + string length; therefore, when the string length is 39, the length of embstr is exactly 16 + 9 + 39 = 64, and jemalloc can allocate exactly 64 bytes of memory units.</p>
+<p>(3) encoding conversion<br>When the int data is no longer an integer, or the size exceeds the range of the long, it is automatically converted to raw.</p>
+<p>As for embstr, because its implementation is read-only, when the embstr object is modified, it will be converted to raw first and then modified, so as long as the embstr object is modified, the modified object must be raw, regardless of whether it reaches 39 bytes. An example is shown in the following figure.</p>
+<p><img src="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/2.jpg" alt></p>
+<ol start="2">
+<li>List<br>(1) Overview<br>Lists are used to store multiple ordered strings, each string is called an element; a list can store 2^32-1 elements.Lists in Redis support insertion and popup at both ends, and can get elements at a specified location (or range), and can act as arrays, queues, stacks, and so on.</li>
+</ol>
+<p>(2) Internal coding<br>The internal encoding of the list can be either a ziplist or a linkedlist.</p>
+<p>A double-ended linked list consists of a list structure and multiple listNode structures; a typical structure is shown in the following figure.</p>
+<p><img src="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/3.jpg" alt></p>
+<p>As you can see from the diagram, the double-ended chain table holds both header and tail pointers, and each node has pointers to the front and back; the length of the list is saved in the chain table; and dup, free, and match set type-specific functions for the node values, so the chain table can be used to save a variety of different types of values. And each node in the chain table points to a redisObject of type string.</p>
+<p>Compressed list: Compressed list is a sequential data structure consisting of a series of specially coded sequential blocks (instead of a double-ended table where each node is a pointer) to save memory. Compared with double-ended chain table, compressed list can save memory space, but the complexity is higher when modify or add or delete operations; therefore, when the number of nodes is small, you can use compressed list; but when the number of nodes is large, it is cost-effective to use double-ended chain table.</p>
+<p>The compressed list is not only used to implement the list, but also used to implement the hash, ordered list; very widely used.</p>
+<p>(3) encoding conversion<br>A compressed list is used only if both of the following two conditions are met: the number of elements in the list is less than 512; and all string objects in the list are less than 64 bytes. If one of the conditions is not met, a double-ended list is used; and encoding is only possible from a compressed list to a double-ended chained list, not the other way around.</p>
+<p>The following diagram illustrates the characteristics of list encoding conversion.<br><img src="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/4.jpg" alt></p>
+<p>where a single string cannot exceed 64 bytes to facilitate a uniform distribution of the length of each node; here, 64 bytes is the length of the string, excluding the SDS structure, because compressed lists use continuous, fixed-length blocks of memory to store strings and do not require the SDS structure to specify the length. The compressed list mentioned later will also emphasize the length of no more than 64 bytes, similar to the principle here.</p>
+<p>3、Hash<br>(1) Overview<br>A hash (as a data structure) is not only one of the five object types provided by redis (along with strings, lists, collections, and ordered combinations), it is also the data structure used by Redis as a Key-Value database. For ease of explanation, when the term “inner hash” is used later in this document, it refers to one of the five object types provided by redis; when the term “outer hash” is used, it refers to the data structure used by Redis as the Key-Value database. The data structure.</p>
+<p>(2) Internal coding<br>The inner hash uses an internal code that can be either a ziplist or a hashtable; the outer hash of Redis uses only the hashtable.</p>
+<p>The compressed list was described earlier. Compared to the hashtable, the compressed list is used for scenarios where the number of elements is small and the length of the elements is small; its advantage is that it is stored centrally, which saves space; at the same time, although the complexity of the operations on the elements is changed from O(1) to O(n), there is no significant disadvantage in the time required for the operations because the number of elements in the hash is small.</p>
+<p>hashtable: a hashtable consists of a dict structure, two dictht structures, an array of dictEntry pointers (called a bucket), and multiple dictEntry structures.</p>
+<p>The relationship between the parts under normal circumstances (i.e., when the hashtable is not rehashing) is shown in the following diagram.</p>
+<p><img src="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/5.jpg" alt></p>
+<p>The following describes the components in order from the bottom up.</p>
+<p>dictEntry</p>
+<p>The dictEntry structure is used to hold key-value pairs and is defined as follows.</p>
+<p><img src="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/6.jpg" alt></p>
+<p>The functions of each of these attributes are as follows.</p>
+<p>key: the key of the key-value pair.<br>val: the value in a key-value pair, implemented using union (i.e., a common body), which may store either a pointer to a value, a 64-bit integer, or an unsigned 64-bit integer.<br>next: point to the next dictEntry for hash conflict resolution<br>On 64-bit systems, a dictEntry object takes up 24 bytes (8 bytes each for key/val/next).</p>
+<p>dictEntry</p>
+<p>The size of the bucket array in redis is calculated according to the following rules: greater than dictEntry, the smallest 2^n; for example, if there are 1000 dictEntry, then the bucket size is 1024; if there are 1500 dictEntry, then the bucket size is 2048.</p>
+<p>dictht</p>
+<p>The dictht structure is as follows.</p>
+<p><img src="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/7.jpg" alt></p>
+<p>The function of each of these attributes is described below.</p>
+<p>The table attribute is a pointer to the bucket.<br>The size attribute records the size of the hash table, i.e., the size of the bucket.<br>used records the number of dictEntry’s that have been used.<br>The value of the sizemask attribute is always size-1. This attribute, along with the hash value, determines where a key is stored in the table.<br>sizemask</p>
+<p>In general, by using the dictht and dictEntry structures, it is possible to implement the functionality of a normal hash table; however, in the Redis implementation, there is a dict structure on top of the dictht structure. The following is the definition and function of the dict structure.</p>
+<p>The dict structure is as follows.<br><img src="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/8.jpg" alt></p>
+<p>The type attribute and the privdata attribute are used to accommodate different types of key-value pairs and are used to create polymorphic dictionaries.</p>
+<p>The ht attribute and the trehashidx attribute are used for rehash, i.e., when the hash table needs to be expanded or contracted. ht is an array containing two items, each of which points to a dictht structure, which is why Redis hashes will have one dict and two dictht structures. Normally, all the data is in ht[0] of the put dict, and ht[1] is only used in the rehash. dict does the rehash operation by rehashing all the data in ht[0] into ht[1]. It then assigns ht[1] to ht[0] and empties ht[1].</p>
+<p>Thus, the reason why the hash in Redis has a dict structure in addition to the dictht and dictEntry structure is to accommodate different types of key-value pairs on the one hand and rehash on the other.</p>
+<p>(3) Encoding conversion<br>As mentioned earlier, the inner hash in Redis may use either a hash table or a compressed list.</p>
+<p>A compressed list is used only if both of the following two conditions are met: the number of elements in the hash is less than 512; and the length of the key and value strings for all key-value pairs in the hash is less than 64 bytes. If one of the conditions is not met, the hash table is used; and the encoding can only be converted from a compressed list to a hash table, not the other way around.</p>
+<p>The following diagram illustrates the features of the hash encoding conversion within Redis.</p>
+<p><img src="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/9.jpg" alt></p>
+<ol start="4">
+<li>Assembly<br>(1) Overview<br>A set is similar to a list in that it is used to store multiple strings, but there are two differences between a set and a list: the elements in a set are unordered, so you can’t manipulate the elements by indexing them; and the elements in a set can’t be duplicated.</li>
+</ol>
+<p>A collection can store up to 2^32-1 elements; in addition to the usual add/drop support, Redis also supports multiple sets of intersection, concatenation, differential set.</p>
+<p>(2) Internal coding<br>The internal encoding of a collection can be either an inset or a hashtable.</p>
+<p>The hash table has already been discussed, so I’ll skip it here; it should be noted that when you use a hash table, the values are all set to null.</p>
+<p>The structure of an integer set is defined as follows.<br><img src="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/10.jpg" alt><br>The encoding represents the type of content stored in the content. Although the content is of type int8_t, it actually stores the value of int16_t, int32_t or int64_t, which is determined by encoding; length represents the number of elements.</p>
+<p>The integer set is suitable for when all elements of the set are integers and the number of elements in the set is small, compared to a hash table, the advantage of integer sets is centralized storage, saving space; at the same time, although the complexity of the operation of the elements from O (1) to O (n), but due to the smaller number of sets, the operation of the time is not a significant disadvantage.</p>
+<p>(3) Code conversion<br>Sets use integer sets only if both of the following conditions are met: the number of elements in the set is less than 512; all elements in the set are integer values. If one of the conditions is not satisfied, a hash table is used; and the encoding can only be converted from an integer set to a hash table, not the other way around.</p>
+<p>The following diagram illustrates the characteristics of the set encoding conversion.<br><img src="http://56ssc.cc/2020/11/21/Introduction to Redis(3)/11.jpg" alt></p>
+<ol start="5">
+<li>Orderly assembly<br>(1) Overview<br>An ordered set is the same as a set, the elements cannot be duplicated; however, unlike a set, the elements in an ordered set are ordered. With the list of index subscript as the basis for sorting different, ordered collection for each element to set a score (score) as the basis for sorting.</li>
+</ol>
+<p>(2) Internal coding<br>The internal encoding of an ordered collection can be either a compressed list (ziplist) or a jump table (skiplist). ziplist is used in both lists and hashes and has already been discussed, so I’ll skip it here.</p>
+<p>A jump table is an ordered data structure that enables fast access to nodes by maintaining multiple pointers to other nodes in each node. In addition to jump tables, another typical implementation of an ordered data structure is a balanced tree; in most cases, the efficiency of jump tables is comparable to that of balanced trees, and they are much simpler to implement than balanced trees, so they are used instead of balanced trees in redis. It supports the average O(logN) and worst O(N) complex points for node lookup, and also supports sequential operations. The specific structure is relatively complex, slightly.</p>
+<p>(3) Code Conversion<br>A compressed list is used only if both of the following two conditions are met: the number of elements in the ordered set is less than 128; and all members of the ordered set are less than 64 bytes in length. If one of these conditions is not met, a jump table is used; and encoding is only possible from a compressed list to a jump table, not the other way around.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Redis/" rel="tag"># Redis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/11/21/Backward feed-back neural network algorithm/" rel="next" title="Backward feed-back neural network algorithm (BP algorithm)">
+                <i class="fa fa-chevron-left"></i> Backward feed-back neural network algorithm (BP algorithm)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/11/29/Plain Bayesian/" rel="prev" title="Plain Bayesian">
+                Plain Bayesian <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Debby</p>
+              <p class="site-description motion-element" itemprop="description">How to learn AI</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-object-types-and-internal-coding"><span class="nav-number">1.</span> <span class="nav-text">Redis object types and internal coding</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Debby</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

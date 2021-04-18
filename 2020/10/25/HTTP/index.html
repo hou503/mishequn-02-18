@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="HTTP,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="HTTP request flow on the browser side Constructing the request  First, the browser builds the request line information, and when it is built, the browser is ready to initiate a network request. 1GET /">
+<meta name="keywords" content="HTTP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP">
+<meta property="og:url" content="http://56ssc.cc/2020/10/25/HTTP/index.html">
+<meta property="og:site_name" content="How to learn AI">
+<meta property="og:description" content="HTTP request flow on the browser side Constructing the request  First, the browser builds the request line information, and when it is built, the browser is ready to initiate a network request. 1GET /">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://56ssc.cc/2020/10/25/HTTP/1.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/10/25/HTTP/2.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/10/25/HTTP/2.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/10/25/HTTP/3.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/10/25/HTTP/4.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/10/25/HTTP/5.jpg">
+<meta property="og:updated_time" content="2020-11-08T02:01:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP">
+<meta name="twitter:description" content="HTTP request flow on the browser side Constructing the request  First, the browser builds the request line information, and when it is built, the browser is ready to initiate a network request. 1GET /">
+<meta name="twitter:image" content="http://56ssc.cc/2020/10/25/HTTP/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://56ssc.cc/2020/10/25/HTTP/">
+
+
+
+
+
+  <title>HTTP | How to learn AI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">How to learn AI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">How to learn AI</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+      
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2025124491792904" data-ad-slot="6724760688"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://56ssc.cc/2020/10/25/HTTP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Debby">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="How to learn AI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HTTP</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-10-25T20:38:14+08:00">
+                2020-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTTP/" itemprop="url" rel="index">
+                    <span itemprop="name">HTTP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="HTTP-request-flow-on-the-browser-side"><a href="#HTTP-request-flow-on-the-browser-side" class="headerlink" title="HTTP request flow on the browser side"></a>HTTP request flow on the browser side</h2><ol>
+<li>Constructing the request</li>
+</ol>
+<p>First, the browser builds the request line information, and when it is built, the browser is ready to initiate a network request.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /index.html HTTP1.1</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Find cache<br>Before actually initiating a web request, the browser looks in the browser cache to see if the file to be requested is available. The browser cache is a technique for saving a copy of a resource locally for direct use in the next request.</li>
+</ol>
+<p>When the browser finds that a copy of the requested resource is already in the browser cache, it intercepts the request, returns a copy of that resource, and simply ends the request without going to the source server to re-download it. The benefits of this are.</p>
+<p>Relieves server-side stress and improves performance (less time spent acquiring resources).<br>For websites, caching is an important part of achieving fast resource loading.<br>Of course, if the cache lookup fails, you’ll be in the web request process.</p>
+<ol start="3">
+<li>Prepare the IP address and port<br>But, not so fast, before we can understand web requests, we need to look at the relationship between HTTP and TCP. Since the browser uses HTTP as the application layer protocol to encapsulate the text of the request and TCP/IP as the transport layer to send it to the network, the browser needs to establish a connection to the server via TCP before the HTTP work can begin. This means that the content of HTTP is implemented through the data transfer phase of TCP, and you can better understand the relationship between the two by looking at the diagram below.</li>
+</ol>
+<p><img src="http://56ssc.cc/2020/10/25/HTTP/1.jpg" alt></p>
+<p>The first step is to request DNS to return the IP address of the domain name, but the browser also provides DNS data caching service, if a domain name has already been resolved, the browser will cache the resolution results for the next query, this will also reduce a network request.</p>
+<p>Once you have the IP address, the next step is to get the port number. Typically, the HTTP protocol defaults to port 80 if the URL doesn’t specify a port number.</p>
+<ol start="4">
+<li>Waiting for the TCP queue<br>Chrome has a mechanism that allows up to 6 TCP connections to be established on the same domain at the same time, so if 10 requests occur on the same domain at the same time, 4 of them will be queued until the ongoing request is completed.</li>
+</ol>
+<p>Of course, if the current number of requests is less than 6, it will go straight to the next step to establish a TCP connection.</p>
+<ol start="5">
+<li>Establishing a TCP connection<br>After waiting in line, you can finally shake hands with the server happily, and the browser establishes a connection to the server over TCP before the HTTP work begins.</li>
+<li>Sending HTTP requests<br>Once the TCP connection is established, the browser can communicate with the server. It is during this communication that the data in the HTTP is transferred.</li>
+</ol>
+<p>You can see how the browser sends the requested information to the server in the figure below.</p>
+<p><img src="http://56ssc.cc/2020/10/25/HTTP/2.jpg" alt><br>First the browser sends a request line to the server, which includes the request method, the request URI (Uniform Resource Identifier), and the HTTP version protocol.</p>
+<p>Sending a request line tells the server what resource the browser needs, and the most common request method is Get, for example, by typing the time.geekbang.org domain name directly into the browser’s address bar, which tells the server to Get its home page resource.</p>
+<p>Another common request method is POST, which is used to send some data to the server, such as logging into a website, which requires sending user information to the server via the POST method. If the POST method is used, then the browser also has to prepare data to send to the server, and the data prepared here is sent through the request body.</p>
+<p>After the browser sends the request line command, it also sends some other information in the form of a request header, which tells the server some basic information about the browser. This includes, for example, information about the operating system used by the browser, the kernel of the browser, the domain name of the current request, the cookie information of the browser, and so on.</p>
+<h2 id="Server-Side-Processes-HTTP-Request-Flow"><a href="#Server-Side-Processes-HTTP-Request-Flow" class="headerlink" title="Server Side Processes HTTP Request Flow"></a>Server Side Processes HTTP Request Flow</h2><ol>
+<li>Returning requests<br>Once the server has finished processing the request, it is ready to return the data to the browser. You can view the returned request data through the utility curl by typing the following command on the command line.</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i  https://bing.com/</span><br></pre></td></tr></table></figure>
+
+<p>Note that the -i is added to return the response line, response header, and response body data, which returns the results shown below.</p>
+<p><img src="http://56ssc.cc/2020/10/25/HTTP/2.jpg" alt><br>First the server will return the response line, including the protocol version and status code.</p>
+<p>But not all requests can be processed by the server, so what about some of the messages that cannot be processed or that are processed incorrectly? The server tells the browser the result of its processing by the status code of the request line, such as.</p>
+<p>The most commonly used status code is 200, indicating successful processing.<br>If the page is not found, a 404 is returned.<br>There are many types of status codes, so I won’t go into too much detail here, there is a lot of information online that you can look up and learn on your own.</p>
+<p>Subsequently, just as the browser sends a request header with the request, the server sends a response header to the browser with the response. The response header contains some information about the server itself, such as the time the server generates the returned data, the type of data returned (JSON, HTML, streaming, etc.), and the cookies the server wants to save on the client.</p>
+<p>After sending the response header, the server can continue to send the response body of the data, usually, the response body contains the actual content of the HTML.</p>
+<p>This is how the server responds to the browser.</p>
+<ol start="2">
+<li>Disconnection<br>Normally, once the server returns the requested data to the client, it has to close the TCP connection. However, if the browser or server includes the following in its header information.</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Connection:Keep-Alive</span><br></pre></td></tr></table></figure>
+
+<p>Then the TCP connection will remain open after sending, so the browser can continue to send requests over the same TCP connection. Keeping the TCP connection open eliminates the time it takes to establish a connection for the next request and speeds up resource loading. For example, if you initialize a persistent connection to a Web page with embedded images from the same Web site, you can reuse that connection to request other resources without having to make a new TCP connection.</p>
+<ol start="3">
+<li>Redirection<br>At this point it looks like the request process is almost over, but there is one more thing you should know, for example, when you open geekbang.org in your browser, you’ll see that the page you end up on is <a href="https://www.geekbang.org" target="_blank" rel="noopener">https://www.geekbang.org</a>.</li>
+</ol>
+<p>The reason the two URLs are different is that there is a redirect involved. As before, you can still use curl to see what a request to geekbang.org will return.</p>
+<p>Enter the following command at the console.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -I geekbang.org</span><br></pre></td></tr></table></figure>
+
+<p>Note that the parameter entered here is -I, which is not the same as -i. -I means that you only need to get the response header and response line data, but not the response body data, and the final returned data is shown below.<br><img src="http://56ssc.cc/2020/10/25/HTTP/3.jpg" alt><br>As you can see, the status code returned by the response line is 301, which tells the browser that I need to redirect to another URL, and the URL to be redirected is contained in the Location field of the response header. The redirect execution process. This explains why you type in geekbang.org and end up with <a href="https://www.geekbang.org" target="_blank" rel="noopener">https://www.geekbang.org</a>.</p>
+<h2 id="Why-do-many-sites-open-quickly-the-second-time"><a href="#Why-do-many-sites-open-quickly-the-second-time" class="headerlink" title="Why do many sites open quickly the second time?"></a>Why do many sites open quickly the second time?</h2><p>If the page opens quickly the second time, the main reason is that some time-consuming data is cached during the first page load.</p>
+<p>So, what data gets cached? From the core request path described above, we can see that two pieces of data, DNS cache and page resource cache, are cached by the browser. Among them, DNS cache is relatively simple, it is mainly associated with the corresponding IP and domain name in the local browser, here we do not do too much analysis.</p>
+<p>Let’s focus on the browser resource cache, and here’s how the cache is processed.</p>
+<p><img src="http://56ssc.cc/2020/10/25/HTTP/4.jpg" alt></p>
+<p>When the server returns the HTTP response header to the browser, the browser uses the Cache-Control field in the response header to set whether to cache the resource or not. Usually, we also need to set a cache expiration time for this resource, which is set by the Max-age parameter in Cache-Control.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control:Max-age=2000</span><br></pre></td></tr></table></figure>
+
+<p>This means that if the cached resource is requested again before the cache expires, it will be returned to the browser directly, but if the cache expires, the browser will continue to make web requests with the following message in the HTTP request header.</p>
+<p>However, if the cache has expired, the browser will continue to make web requests with the following HTTP request header.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">If-None-Match:&quot;4f80f-13c-3a1xb12a&quot;</span><br></pre></td></tr></table></figure>
+
+<p>When the server receives the request header, it determines if the requested resource has been updated based on the value of the If-None-Match.</p>
+<p>If there are no updates, a 304 status code is returned, which is the equivalent of the server telling the browser, “This cache can continue to be used, so I won’t send you data repeatedly this time.”<br>If the resource has an update, the server returns the latest resource directly to the browser.</p>
+<p>Briefly, many websites are able to open in seconds on a second visit because they cache many of their resources locally, and the browser cache saves time by responding to requests directly using a local copy without generating a real web request. At the same time, the DNS data is also cached by the browser, which eliminates the need for DNS lookups.</p>
+<h2 id="How-is-login-status-maintained"><a href="#How-is-login-status-maintained" class="headerlink" title="How is login status maintained?"></a>How is login status maintained?</h2><p>With the above, you’ve learned how caching works. Let’s take a look at how the login status is maintained.</p>
+<p>The user opens the login page, fills in the username and password in the login box, and clicks the OK button. Clicking the OK button triggers the page script to generate the user login information and then calls the POST method to submit the user login information to the server.<br>After receiving the information submitted by the browser, the server will query the backend to verify if the user login information is correct, if so, it will generate a string to show the user’s identity and write the string to the Set-Cookie field of the response header as shown below, then send the response to the browser.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-Cookie: UID=3431uad;</span><br></pre></td></tr></table></figure>
+
+<p>After receiving the response header from the server, the browser starts to parse the response header, and if it encounters a response header that contains a Set-Cookie field, the browser will save this field information locally. If the response header contains a Set-Cookie field, the browser will save this information locally, for example, keeping UID=3431uad local.<br>When the user visits again, the browser makes an HTTP request, but before the request is made, the browser reads the previously saved cookie data and writes the data into the Cookie field in the request header, and then the browser sends the request to the server.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cookie: UID=3431uad;</span><br></pre></td></tr></table></figure>
+
+<p>When it finds the information containing UID=3431uad, the server queries the background and determines that the user is logged in, then generates page data containing the user information and sends the generated data to the browser.<br>After receiving the page data of the current user, the browser can display the logged in status information of the user correctly.<br>Now, you can see from this flow that the browser page status is achieved by using cookies. cookie flow can be seen in the following figure.<br><img src="http://56ssc.cc/2020/10/25/HTTP/5.jpg" alt></p>
+<p>Simply put, if a server-side response is sent with a field for Set-Cookie in the response header, the browser will keep the contents of that field local. The next time the client sends a request to the server, the client will automatically add a cookie value to the request header before sending it out. When the server finds the cookie, it checks which client sent the connection request and compares it with the server’s records to get the user’s status information.</p>
+<h2 id="Sum-up"><a href="#Sum-up" class="headerlink" title="Sum up"></a>Sum up</h2><p>The HTTP request in a browser goes through eight stages from initiation to completion: building the request, finding the cache, preparing the IP and port, waiting for the TCP queue, establishing the TCP connection, initiating the HTTP request, processing the request by the server, returning the request by the server, and disconnecting the connection.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTTP/" rel="tag"># HTTP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/10/25/The data table paradigm/" rel="next" title="The data table paradigm">
+                <i class="fa fa-chevron-left"></i> The data table paradigm
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/10/31/Formal logic/" rel="prev" title="Formal logic">
+                Formal logic <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Debby</p>
+              <p class="site-description motion-element" itemprop="description">How to learn AI</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-request-flow-on-the-browser-side"><span class="nav-number">1.</span> <span class="nav-text">HTTP request flow on the browser side</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Server-Side-Processes-HTTP-Request-Flow"><span class="nav-number">2.</span> <span class="nav-text">Server Side Processes HTTP Request Flow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-do-many-sites-open-quickly-the-second-time"><span class="nav-number">3.</span> <span class="nav-text">Why do many sites open quickly the second time?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-is-login-status-maintained"><span class="nav-number">4.</span> <span class="nav-text">How is login status maintained?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sum-up"><span class="nav-number">5.</span> <span class="nav-text">Sum up</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Debby</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Algorithm,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="IntroductionLogistic regression is a machine learning algorithm that is very popular in interviews, because on the surface it is formally very simple and easy to master, but when asked, it is easy to">
+<meta name="keywords" content="Algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Logistic regression LR">
+<meta property="og:url" content="http://56ssc.cc/2020/12/09/Logistic regression LR/index.html">
+<meta property="og:site_name" content="How to learn AI">
+<meta property="og:description" content="IntroductionLogistic regression is a machine learning algorithm that is very popular in interviews, because on the surface it is formally very simple and easy to master, but when asked, it is easy to">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2021-03-08T00:47:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Logistic regression LR">
+<meta name="twitter:description" content="IntroductionLogistic regression is a machine learning algorithm that is very popular in interviews, because on the surface it is formally very simple and easy to master, but when asked, it is easy to">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://56ssc.cc/2020/12/09/Logistic regression LR/">
+
+
+
+
+
+  <title>Logistic regression LR | How to learn AI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">How to learn AI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">How to learn AI</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+      
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2025124491792904" data-ad-slot="6724760688"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://56ssc.cc/2020/12/09/Logistic regression LR/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Debby">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="How to learn AI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Logistic regression LR</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-12-09T18:20:30+08:00">
+                2020-12-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>Logistic regression is a machine learning algorithm that is very popular in interviews, because on the surface it is formally very simple and easy to master, but when asked, it is easy to be confused. So the first advice to everyone in the interview is not to say they are proficient in logistic regression, it is very easy to be asked down, thus reducing the score. Here is a summary of some of the problems I usually encounter when interviewing others and being interviewed as an interviewer.</p>
+<h3 id="Formal-introduction"><a href="#Formal-introduction" class="headerlink" title="Formal introduction"></a>Formal introduction</h3><p>How to highlight that you are a person who already knows a lot about logistic regression. That is to summarize it in one sentence! Logistic regression assumes that the data obeys Bernoulli distribution, and uses gradient descent to solve the parameters by maximizing the likelihood function to achieve the purpose of dichotomizing the data.</p>
+<p>This actually contains 5 points </p>
+<p>1: the assumptions of logistic regression, </p>
+<p>2: the loss function of logistic regression, </p>
+<p>3: the solution method of logistic regression, </p>
+<p>4: the purpose of logistic regression, </p>
+<p>5: how to classify logistic regression. </p>
+<p>These questions are to assess your basic understanding of logistic regression.</p>
+<h4 id="Basic-assumptions-of-logistic-regression"><a href="#Basic-assumptions-of-logistic-regression" class="headerlink" title="Basic assumptions of logistic regression"></a>Basic assumptions of logistic regression</h4><p>Any model has its own assumptions under which the model is applicable. The first basic assumption of logistic regression is that the data obeys the Bernoulli distribution. A simple example of the Bernoulli distribution is a coin toss, where the probability of a positive toss is 𝑝 and the probability of a negative toss is 1-𝑝. In the model of logistic regression, it is assumed that ℎ𝜃(𝑥) is the probability of a positive sample and 1-𝑝 probability and 1-ℎ𝜃(𝑥) is the probability that the sample is negative. Then the whole model can be described as</p>
+<p><code>ℎ𝜃(𝑥;𝜃)=𝑝</code></p>
+<p>The second hypothesis of logistic regression is to assume that the probability of the sample being positive is </p>
+<p><code>𝑝=11+𝑒−𝜃𝑇𝑥</code></p>
+<p>So the final form of logistic regression </p>
+<p><code>ℎ𝜃(𝑥;𝜃)=1/1+𝑒−𝜃𝑇𝑥</code></p>
+<h4 id="Loss-function-of-logistic-regression"><a href="#Loss-function-of-logistic-regression" class="headerlink" title="Loss function of logistic regression"></a>Loss function of logistic regression</h4><p>The loss function of logistic regression is its great likelihood function</p>
+<p><code>𝐿𝜃(𝑥)=∏𝑖=1𝑚ℎ𝜃(𝑥𝑖;𝜃)𝑦𝑖∗(1-ℎ𝜃(𝑥𝑖;𝜃))1-𝑦𝑖</code></p>
+<h4 id="Solution-method-of-logistic-regression"><a href="#Solution-method-of-logistic-regression" class="headerlink" title="Solution method of logistic regression"></a>Solution method of logistic regression</h4><p>Since this great likelihood function cannot be solved directly, we generally keep forcing the optimal solution by performing gradient descent on the function. There is actually a bonus point in this area to check your knowledge of other optimization methods. The interviewer may ask about the advantages and disadvantages of these three methods and how to choose the most suitable gradient descent method.</p>
+<p>In simple terms, batch gradient descent will get the global optimal solution, the disadvantage is that when updating each parameter, you need to traverse all the data, the computation will be very large, and there will be a lot of redundant calculations, the result is that when the data volume is large, the update of each parameter will be very slow.</p>
+<p>Stochastic gradient descent is updated frequently with high variance, which has the advantage of making sgd jump to new and potentially better local optimal solutions, and the disadvantage of making the process of convergence to local optimal solutions more complicated.</p>
+<p>Small-batch gradient descent combines the advantages of sgd and batch gd by using n samples for each update. It reduces the number of parameter updates and can achieve more stable convergence results, and we generally use this method in deep learning.</p>
+<p>In fact, there is a hidden deeper plus point here, depending on whether you understand optimization methods such as Adam, momentum method. Because the above methods actually have two fatal problems.<br>The first one is how to choose the right learning rate for the model. It is not appropriate to keep the same learning rate from the beginning to the end. At the beginning, when the parameters are just learning, the parameters are far away from the optimal solution, so it is necessary to keep a large learning rate to approach the optimal solution as soon as possible. However, when the parameters are learned later, the parameters and the optimal solution are already close to each other, and you still keep the initial learning rate, it is easy to cross the optimal point and oscillate back and forth near the optimal point, which, in layman’s terms, makes it easy to overlearn and deviate.<br>The second is how to choose the appropriate learning rate for the parameters. In practice, it is not reasonable to keep the same learning rate for each parameter. Some parameters are updated frequently, so the learning rate can be smaller. Some parameters are updated slowly, so the learning rate should be larger. We will not expand here, and I will dedicate a special topic to it sometime.</p>
+<h4 id="Purpose-of-logistic-regression"><a href="#Purpose-of-logistic-regression" class="headerlink" title="Purpose of logistic regression"></a>Purpose of logistic regression</h4><p>The purpose of this function is to dichotomize the data to improve the accuracy.</p>
+<h4 id="How-logistic-regression-is-classified"><a href="#How-logistic-regression-is-classified" class="headerlink" title="How logistic regression is classified"></a>How logistic regression is classified</h4><p>Logistic regression is a regression (i.e., the y-value is continuous), so how does it apply to classification. y-value is indeed a continuous variable. The practice of logistic regression is to delineate a threshold, and those with y-values greater than this threshold are in one category, and those with y-values less than this threshold are in another category. The threshold value is adjusted according to the actual situation. Generally, 0.5 will be chosen as the threshold for classification.</p>
+<h3 id="Further-questions-about-logistic-regression"><a href="#Further-questions-about-logistic-regression" class="headerlink" title="Further questions about logistic regression"></a>Further questions about logistic regression</h3><p>Although logistic regression is formally very simple, its connotation is very rich. There are many questions that can be considered</p>
+<p>Why does the loss function of logistic regression use the maximum likelihood function as the loss function?<br>There are generally four types of loss functions, squared loss function, logarithmic loss function, HingeLoss0-1 loss function, and absolute value loss function. Taking the logarithm of the great likelihood function is equivalent to the logarithmic loss function. In this model of logistic regression, the training of the logarithmic loss function solves the parameters faster. As for the reason you can find out the gradient update of this equation</p>
+<p><code>𝜃𝑗=𝜃𝑗-(𝑦𝑖-ℎ𝜃(𝑥𝑖;𝜃))∗𝑥𝑖𝑗</code></p>
+<p>The update rate of this equation is only related to 𝑥𝑖𝑗, 𝑦𝑖. It is independent of the gradient of the sigmod function itself. This way the update speed is more stable from the beginning to the end.<br>Why not choose the squared loss function? One reason is that if you use the squared loss function, you will find that the gradient update speed is very correlated with the gradient of the sigmod function itself. sigmod function has a gradient no greater than 0.25 in its domain of definition. this will make the training very slow.</p>
+<h4 id="What-is-the-impact-of-logistic-regression-if-there-are-many-features-that-are-highly-correlated-or-if-a-feature-is-repeated-100-times-during-the-training-process"><a href="#What-is-the-impact-of-logistic-regression-if-there-are-many-features-that-are-highly-correlated-or-if-a-feature-is-repeated-100-times-during-the-training-process" class="headerlink" title="What is the impact of logistic regression if there are many features that are highly correlated or if a feature is repeated 100 times during the training process?"></a>What is the impact of logistic regression if there are many features that are highly correlated or if a feature is repeated 100 times during the training process?</h4><p>First of all, if the loss function eventually converges, even if there are a lot of highly correlated features, it will not affect the classifier’s performance.</p>
+<p>But for the features themselves, suppose there is only one feature, and you repeat it 100 times without considering sampling. After training, the data is still the same, but the feature itself is repeated 100 times, which essentially divides the original feature into 100 parts, each of which is one percent of the original feature weight value.</p>
+<p>If in the case of random sampling, in fact, after training and convergence, we can still think that these 100 features and the original one feature play the same effect, but may be the value of many features in the middle of the positive and negative elimination.</p>
+<h4 id="Why-do-we-still-remove-highly-correlated-features-in-the-training-process"><a href="#Why-do-we-still-remove-highly-correlated-features-in-the-training-process" class="headerlink" title="Why do we still remove highly correlated features in the training process?"></a>Why do we still remove highly correlated features in the training process?</h4><p>Removing highly correlated features will make the model more interpretable<br>It can greatly improve the speed of training. If there are many highly correlated features in the model, even if the loss function itself converges, the parameters actually do not converge, which will slow down the training speed. Secondly, more features will increase the training time.</p>
+<h3 id="Summary-of-the-advantages-and-disadvantages-of-logistic-regression"><a href="#Summary-of-the-advantages-and-disadvantages-of-logistic-regression" class="headerlink" title="Summary of the advantages and disadvantages of logistic regression"></a>Summary of the advantages and disadvantages of logistic regression</h3><p>When interviewing, people often ask what you feel when using logistic regression. What do you think are its advantages and disadvantages.</p>
+<h4 id="Here-we-summarize-some-advantages-of-logistic-regression-applied-to-industry"><a href="#Here-we-summarize-some-advantages-of-logistic-regression-applied-to-industry" class="headerlink" title="Here we summarize some advantages of logistic regression applied to industry."></a>Here we summarize some advantages of logistic regression applied to industry.</h4><p>The simplicity of the form and the interpretability of the model are very good. You can see the impact of different features on the final results from the weights of the features, and if the weight of a feature is high, then this feature will have a greater impact on the final results.</p>
+<p>The model effect is good. It is acceptable in engineering (as baseline), if the feature engineering is done well, the effect will not be too bad, and the feature engineering can be developed by everyone in parallel, which greatly accelerates the speed of development.</p>
+<p>The training speed is fast. When classifying, the amount of computation is only related to the number of features. And the distributed optimization of logistic regression sgd development is more mature, the training speed can be further improved by heaps of machines, so we can iterate several versions of the model in a short time.</p>
+<p>The resource consumption is small, especially memory. Because only the feature values of each dimension need to be stored.</p>
+<p>It is easy to adjust the output results. Logistic regression makes it easy to get the final classification results because the output is the probability score of each sample, and we can easily cutoff these probability scores, that is, divide the thresholds (those greater than a certain threshold are one class, those less than a certain threshold are one class).</p>
+<h4 id="But-logistic-regression-itself-has-many-drawbacks"><a href="#But-logistic-regression-itself-has-many-drawbacks" class="headerlink" title="But logistic regression itself has many drawbacks:"></a>But logistic regression itself has many drawbacks:</h4><p>The accuracy rate is not very high. Because the form is very simple (very similar to a linear model), it is difficult to fit the true distribution of the data.</p>
+<p>It is difficult to deal with data imbalance. For example, if we have a problem with very unbalanced positive and negative samples, such as a ratio of 10000:1, we can predict all the samples as positive and make the loss function smaller. But as a classifier, it will not be able to distinguish between positive and negative samples very well.</p>
+<p>It is more troublesome to deal with nonlinear data. Logistic regression can only deal with linearly separable data without introducing other methods, or furthermore, with dichotomous problems .<br>Logistic regression itself cannot filter features. Sometimes, we use gbdt to filter features and then logistic regression on it.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/12/04/Support vector machine SVM/" rel="next" title="Support vector machine SVM">
+                <i class="fa fa-chevron-left"></i> Support vector machine SVM
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/12/20/Integrated Learning/" rel="prev" title="Integrated Learning">
+                Integrated Learning <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Debby</p>
+              <p class="site-description motion-element" itemprop="description">How to learn AI</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Formal-introduction"><span class="nav-number">2.</span> <span class="nav-text">Formal introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Basic-assumptions-of-logistic-regression"><span class="nav-number">2.1.</span> <span class="nav-text">Basic assumptions of logistic regression</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Loss-function-of-logistic-regression"><span class="nav-number">2.2.</span> <span class="nav-text">Loss function of logistic regression</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-method-of-logistic-regression"><span class="nav-number">2.3.</span> <span class="nav-text">Solution method of logistic regression</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Purpose-of-logistic-regression"><span class="nav-number">2.4.</span> <span class="nav-text">Purpose of logistic regression</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#How-logistic-regression-is-classified"><span class="nav-number">2.5.</span> <span class="nav-text">How logistic regression is classified</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Further-questions-about-logistic-regression"><span class="nav-number">3.</span> <span class="nav-text">Further questions about logistic regression</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#What-is-the-impact-of-logistic-regression-if-there-are-many-features-that-are-highly-correlated-or-if-a-feature-is-repeated-100-times-during-the-training-process"><span class="nav-number">3.1.</span> <span class="nav-text">What is the impact of logistic regression if there are many features that are highly correlated or if a feature is repeated 100 times during the training process?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Why-do-we-still-remove-highly-correlated-features-in-the-training-process"><span class="nav-number">3.2.</span> <span class="nav-text">Why do we still remove highly correlated features in the training process?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Summary-of-the-advantages-and-disadvantages-of-logistic-regression"><span class="nav-number">4.</span> <span class="nav-text">Summary of the advantages and disadvantages of logistic regression</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Here-we-summarize-some-advantages-of-logistic-regression-applied-to-industry"><span class="nav-number">4.1.</span> <span class="nav-text">Here we summarize some advantages of logistic regression applied to industry.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#But-logistic-regression-itself-has-many-drawbacks"><span class="nav-number">4.2.</span> <span class="nav-text">But logistic regression itself has many drawbacks:</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Debby</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

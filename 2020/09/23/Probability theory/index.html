@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Mathematics,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="In addition to linear algebra, probability theory (PROBABILITY) is an essential mathematical foundation for AI research. With the rise of the connectionist school of thought, probability statistics ha">
+<meta name="keywords" content="Mathematics">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Probability theory">
+<meta property="og:url" content="http://56ssc.cc/2020/09/23/Probability theory/index.html">
+<meta property="og:site_name" content="How to learn AI">
+<meta property="og:description" content="In addition to linear algebra, probability theory (PROBABILITY) is an essential mathematical foundation for AI research. With the rise of the connectionist school of thought, probability statistics ha">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://56ssc.cc/2020/09/23/Probability theory/1.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/09/23/Probability theory/2.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/09/23/Probability theory/3.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/09/23/Probability theory/4.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/09/23/Probability theory/5.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/09/23/Probability theory/6.jpg">
+<meta property="og:updated_time" content="2021-03-08T00:47:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Probability theory">
+<meta name="twitter:description" content="In addition to linear algebra, probability theory (PROBABILITY) is an essential mathematical foundation for AI research. With the rise of the connectionist school of thought, probability statistics ha">
+<meta name="twitter:image" content="http://56ssc.cc/2020/09/23/Probability theory/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://56ssc.cc/2020/09/23/Probability theory/">
+
+
+
+
+
+  <title>Probability theory | How to learn AI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">How to learn AI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">How to learn AI</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+      
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2025124491792904" data-ad-slot="6724760688"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://56ssc.cc/2020/09/23/Probability theory/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Debby">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="How to learn AI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Probability theory</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-09-23T19:31:19+08:00">
+                2020-09-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mathematics/" itemprop="url" rel="index">
+                    <span itemprop="name">Mathematics</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>In addition to linear algebra, probability theory (PROBABILITY) is an essential mathematical foundation for AI research. With the rise of the connectionist school of thought, probability statistics has replaced mathematical logic as the mainstream tool for AI research. In today’s world of exploding data and exponentially increasing computing power, probability theory has taken on a central role in machine learning.</p>
+<p>Like linear algebra, probability theory represents a way of looking at the world that focuses on ubiquitous possibilities. The specification of a mathematical description of the probability of a random event occurring is the axiomatization process of probability theory. The axiomatized structure of probability embodies an understanding of the nature of probability.</p>
+<p>When the same coin is tossed 10 times, it may be face-up either none or all of the times, which translates into frequencies corresponding to 0% and 100%, respectively. The frequency itself will obviously fluctuate randomly, but as the number of repetitions increases, the value of the frequency of a particular event will show stability and converge to a constant.</p>
+<p>The method of understanding probability from the frequency of an event is called “frequencyentist probability”, and the “probability” in frequencyist parlance is actually a single result in a random experiment that can be repeated independently. Limits of frequency of occurrence. Because a stable frequency is an expression of statistical regularity, it is a reasonable idea to calculate the frequency through a large number of independent repeated trials and use it to characterize the probability of an event occurring.</p>
+<p>In the quantitative calculation of probability, the frequency school relies on the basis of the classical probability model. In the classical probabilistic model, the outcome of a trial contains only a finite number of fundamental events, each of which has the same probability of occurring. In this way, assuming that the number of all elementary events is n and the number of elementary events contained in the random event A to be observed is k, the formula for the probability of an event under the classical probability model is as follows</p>
+<p><img src="http://56ssc.cc/2020/09/23/Probability theory/1.jpg" alt></p>
+<p>The probability of complex random events can be derived from this basic formula.</p>
+<p>The previous definition of probability is for a single random event, but it’s not enough to describe the relationship between two random events. In a soccer match, the probability of a team winning 1:0 is obviously not the same as the probability of being down 0:2 and overturning the game 3:2. This brings us to the concept of conditional probability.</p>
+<p>Conditional probability is a new probability distribution obtained by adjusting the sample space based on existing information. Assuming two random events A and B, conditional probability is the probability that event A will occur under the conditions that event B has already occurred, expressed by the following equation</p>
+<p><img src="http://56ssc.cc/2020/09/23/Probability theory/2.jpg" alt></p>
+<p>P(AB) in the above equation is called joint probability, which represents the probability of two events A and B occurring together. If the joint probability is equal to the product of the probabilities of the two events, i.e. P(AB) = P(A)⋅P(B), it means that the occurrence of these two events does not affect each other, i.e. they are independent of each other. For mutually independent events, the conditional probability is the probability of itself, i.e., P(A|B) = P(A).</p>
+<p>Based on the conditional probability, the law of total probability formula can be derived. The function of the total probability formula is to transform the probability solution of a complex event into a summation of the probabilities of simple events occurring under different circumstances, i.e.</p>
+<p><img src="http://56ssc.cc/2020/09/23/Probability theory/3.jpg" alt><br>The full probability formula represents the frequency school’s approach to solving probability problems by making some assumptions (P(Bi)) and then discussing the probability of a random event (P(A|Bi)) under these assumptions.</p>
+<p>The inverse probability problem is an important one, which is solved by slightly tidying up the full probability formula. Inverse probability solves the problem of inferring the probability of various hypotheses (P(Bi|A)), given that the outcome of the event is certain (P(A)). Since this theory was first developed by the English clergyman Thomas Bayes, its common form is known as the Bayesian formula.</p>
+<p><img src="http://56ssc.cc/2020/09/23/Probability theory/4.jpg" alt></p>
+<p>Bayes’ formula can be further abstracted into Bayes’ theorem (Bayes’ theorem).</p>
+<p><img src="http://56ssc.cc/2020/09/23/Probability theory/5.jpg" alt></p>
+<p>where P(H) is referred to as prior probability, the probability that a predetermined hypothesis holds; P(D|H) is referred to as likelihood function, the probability that an outcome is observed if the hypothesis holds; and P(H|D) is referred to as posterior probability, the probability that an outcome is observed if the hypothesis holds.</p>
+<p>In terms of scientific research methodology, Bayes’ theorem provides an entirely new logic. It looks for reasonable hypotheses based on observations, or the best theoretical explanation based on observations, and its focus is on posterior probability. The Bayesian school of probability was born out of this idea.</p>
+<p>In the Bayesian view, probability describes how plausible a random event is. If the weather app on your phone gives an 85% probability that it will rain tomorrow, this cannot be explained in terms of frequency, but means that the probability of it raining tomorrow is 85%.</p>
+<p>The frequency school considers the assumption to be objective and unchanging, i.e. there is a fixed a priori distribution, but we as observers have no way of knowing it. Therefore, when calculating the probability of a specific event, we need to determine the type and parameters of the probability distribution, and use this as the basis for probabilistic deduction.</p>
+<p>The Bayesian school, by contrast, holds that a fixed prior distribution does not exist and that the parameters themselves are random numbers. In other words, the hypotheses themselves depend on observations, are uncertain and subject to revision. The role of data is to make constant revisions to the assumptions, bringing the observer’s subjective perception of probability closer to objective reality.</p>
+<p>Probability theory is another theoretical basis for artificial intelligence in addition to linear algebra, and most machine learning models use a probabilistic-based approach. However, due to the limited training data available for practical tasks, the parameters of the probability distribution need to be estimated, which is the core task of machine learning.</p>
+<p>There are two approaches to probability estimation: maximum likelihood estimation and maximum a posteriori estimation, both of which reflect the frequency and Bayesian ways of understanding probability, respectively.</p>
+<p>The idea of maximum likelihood estimation is to maximize the probability of the training data, determine the unknown parameters in the probability distribution accordingly, and the estimated probability distribution will be the most consistent with the distribution of the training data. The idea of the maximum a posteriori likelihood method, on the other hand, is to maximize the probability of the occurrence of the unknown parameter based on the training data and other known conditions, and to select the most likely value of the unknown parameter taken as an estimate. In estimating the parameters, the maximum likelihood estimation method only requires the use of training data, the maximum a posteriori probability method requires additional information in addition to the data, which is the prior probability in the Bayesian formula.</p>
+<p>From a theoretical point of view, the frequency school and the Bayesian school each play an irreplaceable role. However, specifically in the application field of artificial intelligence, the various methods based on Bayes’ theorem are more closely aligned with human cognitive mechanisms and play a more important role in fields such as machine learning.</p>
+<p>An important application of probability theory is the description of random variables. According to the different value spaces, random variables can be divided into two categories: discrete random variable and continuous random variable. In practice, it is necessary to describe the probability of each possible value of a random variable.</p>
+<p>Each possible value of a discrete variable has a probability greater than 0. The one-to-one correspondence between values and probabilities is the law of distribution of discrete random variables, also known as the probability mass function. Probability mass function in the continuous random variables on the correspondence is the probability density function (probability density function).</p>
+<p>It should be noted that the probability density function reflects not the true probability of continuous random variables, but the relative relationship between the different possibilities. For continuous random variables, the number of possible values for the infinite can not be listed, when the probability of normalization is assigned to the infinite points, the probability of each point is an infinitesimal amount, take the limit is equal to zero. The role of the probability density function is to distinguish between these infinitesimal quantities. Although 1/x and 2/x are both infinitesimal at x → ∞, the latter is always twice as large as the former. This kind of difference in relative rather than absolute terms can be depicted by the probability density function. Integrating the probability density function yields the probability that the value of a continuous random variable will fall within a certain interval.</p>
+<p>After defining the probability mass function and the probability density function, it is possible to give some characteristics of the important distributions. Important discrete distributions include two-point, binomial, and Poisson distributions, while important continuous distributions include uniform, exponential, and normal distributions.</p>
+<ul>
+<li><p>Bernoulli distribution: Applies to the case where the outcome of a random trial is binary and the probability of the event occurring/not occurring is p/(1-p). Any random trial with only two outcomes can be described by a two-point distribution, and the result of a coin toss can be considered a two-point distribution with equal probability.</p>
+</li>
+<li><p>Binomial distribution: The two-point distribution of random trials satisfying the parameter p is repeated n times independently, and the number of events is the binomial distribution satisfying the parameter (n,p). The expression for the binomial distribution can be written as P(X=k)=Cnk⋅pk⋅(1-p)(n-k),0≤k≤n.</p>
+</li>
+<li><p>Poisson distribution: The distribution satisfied by the number of particles released from radioactive material in the specified time. When n is large in the binomial distribution and p is small, the probability value can be approximated by the probability value of the Poisson distribution with λ=np.</p>
+</li>
+<li><p>Uniform distribution: A continuous random variable that satisfies a uniform distribution over an interval (a, b), with probability density function 1 / (b - a), which has equal probability of falling within any subinterval of equal length within the interval (a, b).</p>
+</li>
+<li><p>Exponential distribution: a random variable with parameter θ can only take positive value and its probability density function is e-x/θ/θ,x&gt;0. An important feature of exponential distribution is that it has no memory: P(X &gt; s + t | X &gt; s) = P (X &gt; t).</p>
+</li>
+<li><p>Normal distribution: the probability density function of a normal distribution with parameters as</p>
+</li>
+</ul>
+<p><img src="http://56ssc.cc/2020/09/23/Probability theory/6.jpg" alt></p>
+<p>When μ=0,σ=1, the above equation is called the standard normal distribution. The normal distribution is the most common and important type of distribution, and many phenomena in nature approximately obey the normal distribution.</p>
+<p>In addition to the probability mass function / probability density function, another class of parameters that describe random variables are their numerical characteristics. Numerical characteristics are constants used to portray certain characteristics of random variables, including expected value, variance, and covariance.</p>
+<p>Mathematical expectations, or mean values, represent the weighted average of the possible values of a random variable, i.e., the pattern that describes the random variable as a whole according to the probability of each value occurring. The variance is the degree to which the values of the random variables deviate from their mathematical expectation. Smaller variance means that the values of the random variables are concentrated near the mathematical expectation, while larger variance means that the values of the random variables are more scattered.</p>
+<p>Both mathematical expectations and variance describe the numerical characteristics of a single random variable, and covariance and correlation coefficients are used to describe the interrelationship between two random variables. The covariance measures the linear correlation between two random variables, i.e. whether the variable Y can be expressed as aX+b with the other variable X as the dependent variable.</p>
+<p>The correlation coefficient is a constant with an absolute value not greater than 1, equal to 1 means that the two random variables are perfectly positively correlated, equal to -1 means that they are perfectly negatively correlated, and equal to 0 means that they are not correlated. It is important to note that both covariance and correlation coefficients portray a linear correlation. If the relationship between the random variables satisfies Y=X2, such a non-linear correlation is beyond the expressive power of the covariance.</p>
+<p>Today I share with you the essential probabilistic foundations of AI, focusing on the interpretation of abstract concepts rather than concrete mathematical formulas, the key points of which are as follows.</p>
+<ul>
+<li>Probability theory is concerned with the uncertainties or possibilities of life.<br>(a) The frequency school considers the a priori distribution to be fixed and the model parameters to be calculated by maximum likelihood estimation.</li>
+<li>Bayesian school of thought that a priori distributions are stochastic and that model parameters are calculated by maximizing a posteriori probabilities.</li>
+<li>Normal distribution is the most important kind of distribution of random variables.</li>
+</ul>
+<p>In today’s machine learning, a great deal of the task is to predict what is likely to happen based on existing data, hence Bayes’ theorem is widely used.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mathematics/" rel="tag"># Mathematics</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/09/20/DBMS/" rel="next" title="DBMS">
+                <i class="fa fa-chevron-left"></i> DBMS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/09/27/Thinking about SQL in a database way/" rel="prev" title="Thinking about SQL in a database way">
+                Thinking about SQL in a database way <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Debby</p>
+              <p class="site-description motion-element" itemprop="description">How to learn AI</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Debby</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

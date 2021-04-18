@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Mathematics,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Recent scientific research has consistently confirmed that uncertainty is the essential nature of the objective world. In other words, God really does roll the dice. An uncertain world can only be des">
+<meta name="keywords" content="Mathematics">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Information theory">
+<meta property="og:url" content="http://56ssc.cc/2020/10/09/Information theory/index.html">
+<meta property="og:site_name" content="How to learn AI">
+<meta property="og:description" content="Recent scientific research has consistently confirmed that uncertainty is the essential nature of the objective world. In other words, God really does roll the dice. An uncertain world can only be des">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://56ssc.cc/2020/10/09/Information theory/1.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/10/09/Information theory/2.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/10/09/Information theory/3.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/10/09/Information theory/4.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/10/09/Information theory/5.jpg">
+<meta property="og:image" content="http://56ssc.cc/2020/10/09/Information theory/6.jpg">
+<meta property="og:updated_time" content="2021-03-08T00:47:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Information theory">
+<meta name="twitter:description" content="Recent scientific research has consistently confirmed that uncertainty is the essential nature of the objective world. In other words, God really does roll the dice. An uncertain world can only be des">
+<meta name="twitter:image" content="http://56ssc.cc/2020/10/09/Information theory/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://56ssc.cc/2020/10/09/Information theory/">
+
+
+
+
+
+  <title>Information theory | How to learn AI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">How to learn AI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">How to learn AI</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+      
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2025124491792904" data-ad-slot="6724760688"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://56ssc.cc/2020/10/09/Information theory/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Debby">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="How to learn AI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Information theory</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-10-09T21:10:06+08:00">
+                2020-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mathematics/" itemprop="url" rel="index">
+                    <span itemprop="name">Mathematics</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Recent scientific research has consistently confirmed that uncertainty is the essential nature of the objective world. In other words, God really does roll the dice. An uncertain world can only be described using probabilistic models, and it was the depiction of probability that led to the birth of information theory.</p>
+<p>In 1948, Claude Shannon, a physicist working at Bell Labs, published his famous paper “A Mathematical Theory of Communication”, which provided a quantitative analysis of the qualitative concept of information and marked the birth of information theory as a discipline.</p>
+<p>In A Mathematical Theory of Communication, Shannon begins, “The basic problem of communication is to reproduce at one point precisely or approximately the message selected at another point. Messages usually have meaning, i.e., according to some system, the message itself points to or relates to a physically or conceptually specific entity. But the semantic meaning of a message is irrelevant to the engineering problem; the important issue is that a message comes from a collection of all possible messages.”</p>
+<p>In this way, all types of messages are abstracted into logical symbols, which extends the scope of the communication task and the applicability of information theory, as well as completely divorcing the communication and processing of messages.</p>
+<p>Information theory uses the concept of “information entropy” to explain the amount of information in a single source and the quantity and efficiency of information transmitted in communication, and to bridge the gap between the uncertainty of the world and the measurability of information.</p>
+<p>Shannon’s quantification of information was based on this idea, and he defined “entropy” as the most basic and important concept in information theory. The word “entropy” comes from another encyclopedic scientist, John von Neumann, who argued that no one knew what entropy was. Although the concept has been used extensively in thermodynamics, it was not until it was extended to information theory that the nature of entropy was explained, i.e., the degree of chaos inherent in a system.</p>
+<p>In information theory, if an event A occurs with probability p(A), then the amount of self-information about this event is defined as</p>
+<p><img src="http://56ssc.cc/2020/10/09/Information theory/1.jpg" alt></p>
+<p>The information entropy of a source containing multiple symbols can be calculated based on the amount of self-information of a single event. The information entropy of a source is the statistical average of the amount of self-information for each symbol that may be emitted by the source over the probability space constituted by the source. If a discrete source X contains n symbols and each symbol ai takes the value p(ai), then the source entropy of X is</p>
+<p><img src="http://56ssc.cc/2020/10/09/Information theory/2.jpg" alt></p>
+<p>The source entropy describes the average amount of information provided by each symbol sent by the source and is the mean value of the overall information measure of the source. When each symbol in the source is taken with equal probability, the source entropy takes the maximum value log2n, meaning that the source is the most random.</p>
+<p>There is the concept of conditional probability in probability theory, and extending conditional probability to information theory gives conditional entropy. If there is a correlation between two sources, the source entropy of the other source, Y, decreases if one of the sources, X, is known. The conditional entropy H(Y|X) represents the uncertainty of the other random variable Y given that the random variable X is known, i.e., the entropy calculated from the conditional probability of Y given X and then solved mathematically for X with the expectation that.</p>
+<p><img src="http://56ssc.cc/2020/10/09/Information theory/3.jpg" alt></p>
+<p>The meaning of conditional entropy is that the variable Y is first classified once according to the value of the variable X, and its individual information entropy is computed for each divided category, and then the information entropy of each class is computed according to the distribution of X and its mathematical expectation.</p>
+<p>In the case of a class, for example, where students can choose any seat in the classroom, there will be many possible seat distributions, and their source entropy will be larger. If a restriction is added to the choice of seats, such as boys sitting on the left and girls sitting on the right, the distribution of seats on the left and the distribution of seats on the right will still be random, but the situation will be much simpler compared to when no restriction is added. This is the reduction in uncertainty brought about by classification.</p>
+<p>Once the conditional information entropy is defined, the concept of mutual information can be further obtained</p>
+<p><img src="http://56ssc.cc/2020/10/09/Information theory/4.jpg" alt></p>
+<p>Mutual information is equal to the source entropy of Y minus the conditional entropy of Y when X is known, i.e., the removal of uncertainty about Y provided by X. It can also be seen as the information gain that X brings to Y. The information gain that X brings to Y can also be seen as the information gain. The name “mutual information” is often used in the field of communication, while “information gain” is often used in the field of machine learning, and the essence of both is the same.</p>
+<p>In machine learning, information gain is often used in the selection of classification features. For a given training data set Y, H(Y) represents the uncertainty of classifying the training set when no features are given, while H(Y|X) represents the uncertainty of classifying the training set Y using feature X. H(Y|X) represents the uncertainty of classifying the training set Y using feature X when no features are given. The gain of information represents the degree to which the uncertainty of classification of the training set Y is reduced by feature X, i.e., how well feature X distinguishes the training set Y from other features.</p>
+<p>Obviously, features with greater gain of information have better classification ability. However, the value of information gain depends heavily on the information entropy H(Y) of the dataset, and thus does not have absolute significance. To solve this problem, researchers have also developed the concept of information gain ratio and defined it as g(X,Y) = I(X;Y)/H(Y).</p>
+<p>Another information theoretic concept often used in machine learning is called “Kullback-Leibler scatter”, or KL scatter, which is a method to describe the difference between two probability distributions P and Q. KL scatter is defined as follows</p>
+<p><img src="http://56ssc.cc/2020/10/09/Information theory/5.jpg" alt></p>
+<p>KL scatter is a measure of the amount of additional information. Given a source with a probability distribution of symbols P(X), one can devise an optimal encoding for P(X) such that the least number of average bits (equal to the source entropy of the source) is required to represent the source.</p>
+<p>However, when the set of symbols of the source remains unchanged, and the probability distribution of conformity changes to Q(X), then the optimal encoding for P(X) is used to encode the symbols of the distribution of conformity Q(X), and the number of characters in the resultant encoding will be a few bits more than the optimal value.</p>
+<p>The KL scatter is a measure of the average number of extra bits per character in this case, and can also represent the distance between the two distributions.</p>
+<p>Two important properties of KL scatter are non-negativity and asymmetry.</p>
+<p>Non-negativity means that the KL sparsity is greater than or equal to 0, and the equal sign is only taken when the two distributions are identical.</p>
+<p>Asymmetry means that DKL(P||Q) ≠ DKL(Q||P), i.e., the deviation obtained by approximating Q(X) with P(X) is different from that obtained by approximating P(X) with Q(X), and thus the KL dispersion does not satisfy the mathematical definition of distance, which is important to note.</p>
+<p>In fact, DKL(P||Q) and DKL(Q||P) represent two different ways of approximating the distance. For DKL(P||Q) to be minimal, it is necessary to have Q(X) equally not equal to 0 at locations where P(X) is not equal to 0. For DKL(Q||P) to be minimal, it is necessary to have Q(X) equally equal to 0 at locations where P(X) is equal to 0.</p>
+<p>In addition to the indicators defined above, there is another important theorem in information theory, called the “maximum entropy principle”. The principle of maximum entropy is a criterion for determining the statistical properties of random variables in an attempt to best fit the objective situation. The worst-case scenario for an unknown probability distribution is that it takes every possible value with equal probability. This is the time when the probability distribution is most uniform, which means that the random variable is the most random, and predicting it is the most difficult.</p>
+<p>From this point of view, the essence of the principle of maximum entropy is that it does not introduce any unnecessary constraints or assumptions when extrapolating an unknown distribution, and therefore the most uncertain results can be obtained with the least risk in prediction. The famous saying “Don’t put all your eggs in the same basket” in investment finance can be regarded as a practical application of the principle of maximum entropy.</p>
+<p>The maximum entropy model can be obtained by applying the principle of maximum entropy to a classification problem. In the classification problem, first of all, it is necessary to determine some characteristic functions as the basis of classification. In order to ensure the validity of the feature functions, their mathematical expectations on the true distribution P(X) of the model and on the empirical distribution P~(X) derived from the training dataset should be equal, i.e., the estimate of the mathematical expectations of a given feature function should be an unbiased estimate.</p>
+<p>In this way, each feature function corresponds to a constraint. The task of classification is to determine the best classification model given these constraints. Since there is no a priori knowledge of classification other than these constraints, it is necessary to solve the distribution of conditions with the greatest uncertainty using the principle of maximum entropy, i.e., let the following functions maximize their values</p>
+<p><img src="http://56ssc.cc/2020/10/09/Information theory/6.jpg" alt></p>
+<p>where p(y|x) is the distribution of objective conditions to be determined for the classification problem. Calculating the maximum value of the above equation is essentially a constrained optimization problem, and the constraints determined by the eigenfunction can be transformed into an unconstrained optimization problem by removing its influence through the introduction of the Lagrange multiplier. It can be proven mathematically that the solution to this model exists and is unique.</p>
+<p>Today I share with you the essential information-theoretic foundations of AI, focusing on the interpretation of abstract concepts rather than the derivation of mathematical formulas, the main points of which are as follows.</p>
+<ul>
+<li>Information theory deals with uncertainty in the objective world.</li>
+<li>Conditional entropy and information gain are important parameters in classification problems.</li>
+<li>KL scatter is used to describe the difference between two different probability distributions.</li>
+<li>The principle of maximum entropy is a common criterion in classification problems.</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mathematics/" rel="tag"># Mathematics</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/10/02/Chrome architecture/" rel="next" title="Chrome architecture">
+                <i class="fa fa-chevron-left"></i> Chrome architecture
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/10/10/How the browser works/" rel="prev" title="How the browser works">
+                How the browser works <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Debby</p>
+              <p class="site-description motion-element" itemprop="description">How to learn AI</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Debby</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
